@@ -1,0 +1,35 @@
+{
+    "name": "phly/phlyty",
+    "description": "PHP 5.4 Microframework built on top of ZF2 components",
+    "keywords": ["zf2", "microframework", "mvc"],
+    "homepage": "http://github.com/weierophinney/phlyty",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Matthew Weier O'Phinney",
+            "email": "me@mwop.net",
+            "homepage": "http://mwop.net/"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.zendframework.com/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-eventmanager": "2.0.*",
+        "zendframework/zend-http": "2.0.*",
+        "zendframework/zend-log": "2.0.*",
+        "zendframework/zend-mvc": "2.0.*",
+        "phly/mustache": ">=1.2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phlyty": "library/"
+        }
+    }
+}

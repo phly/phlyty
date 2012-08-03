@@ -1,0 +1,71 @@
+{
+    "hash": "b4f1d1c16db1c39935460df76fa2e216",
+    "packages": [
+        {
+            "package": "phly/mustache",
+            "version": "dev-master",
+            "source-reference": "bf4bb6eed7385ce5c137dcaa66325bd73ee7f815",
+            "commit-date": "1343915507"
+        },
+        {
+            "package": "zendframework/zend-code",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-di",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-eventmanager",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-http",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-loader",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-log",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-modulemanager",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-mvc",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-servicemanager",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-stdlib",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-uri",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-validator",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-view",
+            "version": "2.0.0rc2"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": [
+
+    ]
+}
