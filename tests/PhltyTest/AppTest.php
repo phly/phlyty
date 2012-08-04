@@ -227,4 +227,33 @@ class AppTest extends TestCase
         $map->name('controller');
         $this->assertEquals('controller', $map->name());
     }
+
+    public function methods()
+    {
+        return [
+            ['delete'],
+            ['get'],
+            ['options'],
+            ['patch'],
+            ['post'],
+            ['put'],
+        ];
+    }
+
+    /**
+     * @dataProvider methods
+     */
+    public function testAddingRouteUsingMethodTypeCreatesRouteThatRespondsToThatMethodType($method)
+    {
+        $methods = ['delete', 'get', 'options', 'patch', 'post', 'put'];
+        $map = $this->app->$method('/:controller', 'bogus-callback');
+        $this->assertTrue($map->respondsTo($method));
+
+        foreach ($methods as $test) {
+            if ($test === $method) {
+                continue;
+            }
+            $this->assertFalse($map->respondsTo($test));
+        }
+    }
 }

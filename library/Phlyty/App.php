@@ -173,4 +173,88 @@ class App
         $this->routes[] = $route;
         return $route;
     }
+
+    /**
+     * Add a route for a DELETE request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function delete($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('delete');
+        return $map;
+    }
+
+    /**
+     * Add a route for a GET request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function get($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('get');
+        return $map;
+    }
+
+    /**
+     * Add a route for a OPTIONS request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function options($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('options');
+        return $map;
+    }
+
+    /**
+     * Add a route for a PATCH request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function patch($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('patch');
+        return $map;
+    }
+
+    /**
+     * Add a route for a POST request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function post($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('post');
+        return $map;
+    }
+
+    /**
+     * Add a route for a PUT request
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     */
+    public function put($route, $controller)
+    {
+        $map = $this->map($route, $controller);
+        $map->via('put');
+        return $map;
+    }
 }
