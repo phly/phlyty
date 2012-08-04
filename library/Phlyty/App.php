@@ -10,6 +10,7 @@ namespace Phlyty;
 
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\Mvc\Router;
 use Zend\Uri\UriInterface;
 
 /**
@@ -33,6 +34,13 @@ class App
      * @var Response
      */
     protected $response;
+
+    /**
+     * Routes
+     *
+     * @var Route[]
+     */
+    protected $routes;
 
     /**
      * Retrieve the request environment
@@ -138,5 +146,31 @@ class App
         $response->setStatusCode($status);
 
         throw new Exception\HaltException();
+    }
+
+    /**
+     * Map a route to a callback
+     *
+     * @param  string|Router\RouteInterface $route
+     * @param  callable $controller
+     * @return Route
+     * @throws Exception\InvalidRouteException
+     */
+    public function map($route, $controller)
+    {
+        if (is_string($route)) {
+            $route = Router\Http\Segment::factory(array(
+                'route' => $route,
+            ));
+        }
+        if (!$route instanceof Router\RouteInterface) {
+            throw new Exception\InvalidRouteException(
+                'Routes are expected to be either strings or instances of Zend\Mvc\Router\RouteInterface'
+            );
+        }
+
+        $route = new Route($route, $controller);
+        $this->routes[] = $route;
+        return $route;
     }
 }

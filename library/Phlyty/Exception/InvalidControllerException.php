@@ -9,11 +9,11 @@
 namespace Phlyty\Exception;
 
 /**
- * Exception indicating a halt condition
+ * Exception indicating an invalid controller
  *
  * @category   Phlyty
  * @package    Phlyty
  * @subpackage Exception
  */
-class HaltException extends \Exception implements ExceptionInterface
+class InvalidControllerException extends \DomainException implements ExceptionInterface
 {}

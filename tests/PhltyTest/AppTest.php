@@ -4,9 +4,11 @@ namespace PhlytyTest;
 
 use Phlyty\App;
 use Phlyty\Exception;
+use Phlyty\Route;
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\Mvc\Router\Http as Routes;
 
 class AppTest extends TestCase
 {
@@ -132,5 +134,90 @@ class AppTest extends TestCase
         $location = $headers->get('Location');
         $uri      = $location->getUri();
         $this->assertEquals('http://github.com', $uri);
+    }
+
+    public function testMapCreatesASegmentRouteWhenProvidedWithAStringRoute()
+    {
+        $map   = $this->app->map('/:controller', function ($params, $app) { });
+        $route = $map->route();
+        $this->assertInstanceOf('Zend\Mvc\Router\Http\Segment', $route);
+    }
+
+    public function testMapCanReceiveARouteObject()
+    {
+        $route = Routes\Segment::factory(array(
+            'route'    => '/:controller',
+        ));
+        $map = $this->app->map($route, function ($params, $app) { });
+        $this->assertSame($route, $map->route());
+    }
+
+    public function testPassingInvalidRouteRaisesException()
+    {
+        $this->setExpectedException('Phlyty\Exception\InvalidRouteException');
+        $this->app->map($this, function () {});
+    }
+
+    public function testMapCanReceiveACallable()
+    {
+        $map   = $this->app->map('/:controller', function ($params, $app) { });
+        $this->assertInstanceOf('Closure', $map->controller());
+    }
+
+    public function testPassingInvalidControllerToRouteDoesNotImmediatelyRaiseException()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $this->assertInstanceOf('Phlyty\Route', $map);
+    }
+
+    public function testAccessingInvalidControllerRaisesException()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $this->setExpectedException('Phlyty\Exception\InvalidControllerException');
+        $map->controller();
+    }
+
+    public function testPassingInvalidMethodToRouteViaMethodRaisesException()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $this->setExpectedException('Phlyty\Exception\InvalidMethodException');
+        $map->via('FooBar');
+    }
+
+    public function testCanSetMethodsRouteRespondsToSingly()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $map->via('get');
+        $this->assertTrue($map->respondsTo('get'));
+        $this->assertFalse($map->respondsTo('post'));
+        $map->via('post');
+        $this->assertTrue($map->respondsTo('get'));
+        $this->assertTrue($map->respondsTo('post'));
+    }
+
+    public function testCanSetMethodsRouteRespondsToAsArray()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $map->via(['get', 'post']);
+        $this->assertTrue($map->respondsTo('get'));
+        $this->assertTrue($map->respondsTo('post'));
+        $this->assertFalse($map->respondsTo('put'));
+    }
+
+    public function testCanSetMethodsRouteRespondsToAsMultipleArguments()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $map->via('get', 'post');
+        $this->assertTrue($map->respondsTo('get'));
+        $this->assertTrue($map->respondsTo('post'));
+        $this->assertFalse($map->respondsTo('put'));
+    }
+
+    public function testCanSpecifyAdditionalMethodTypesToRespondTo()
+    {
+        Route::allowMethod(__FUNCTION__);
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $map->via(__FUNCTION__);
+        $this->assertTrue($map->respondsTo(__FUNCTION__));
     }
 }

@@ -9,11 +9,11 @@
 namespace Phlyty\Exception;
 
 /**
- * Exception indicating a halt condition
+ * Exception indicating an invalid route type
  *
  * @category   Phlyty
  * @package    Phlyty
  * @subpackage Exception
  */
-class HaltException extends \Exception implements ExceptionInterface
+class InvalidRouteException extends \InvalidArgumentException implements ExceptionInterface
 {}
