@@ -1,10 +1,22 @@
 <?php
+/**
+ * @link      http://github.com/weierophinney/Phlty for the canonical sournce
+ * @copyright Copyright (c) 2012 Matthew Weier O'Phinney
+ * @license   BSD 3-Clause
+ * @package   Phlyty
+ */
 
 namespace Phlyty;
 
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 
+/**
+ * Application container
+ *
+ * @category   Phlyty
+ * @package    Phlyty
+ */
 class App
 {
     /**
@@ -69,5 +81,25 @@ class App
     {
         $this->response = $response;
         return $this;
+    }
+
+    /**
+     * Halt execution
+     *
+     * Halts execution, and sets the response status code to $status, as well
+     * as sets the response body to the provided message (if any). Any previous
+     * content in the response body will be overwritten.
+     *
+     * @param  int    $status  HTTP response status
+     * @param  string $message HTTP response body
+     * @return void
+     * @throws Exception\HaltException
+     */
+    public function halt($status, $message = '')
+    {
+        $response = $this->response();
+        $response->setStatusCode($status);
+        $response->setContent($message);
+        throw new Exception\HaltException();
     }
 }
