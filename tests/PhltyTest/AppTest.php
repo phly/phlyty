@@ -68,4 +68,24 @@ class AppTest extends TestCase
 
         $this->assertContains('error message', $this->app->response()->getContent());
     }
+
+    public function testStopShouldRaiseHaltException()
+    {
+        $this->setExpectedException('Phlyty\Exception\HaltException');
+        $this->app->stop();
+    }
+
+    public function testResponseShouldRemainUnalteredAfterStop()
+    {
+        $this->app->response()->setStatusCode(200)
+                              ->setContent('foo bar');
+        try {
+            $this->app->stop();
+            $this->fail('HaltException expected');
+        } catch (Exception\HaltException $e) {
+        }
+
+        $this->assertEquals(200, $this->app->response()->getStatusCode());
+        $this->assertContains('foo bar', $this->app->response()->getContent());
+    }
 }

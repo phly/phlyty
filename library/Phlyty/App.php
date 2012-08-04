@@ -102,4 +102,18 @@ class App
         $response->setContent($message);
         throw new Exception\HaltException();
     }
+
+    /**
+     * Stop execution
+     *
+     * Stops execution immediately, returning the response as it currently
+     * stands.
+     *
+     * @return void
+     * @throws Exception\HaltException
+     */
+    public function stop()
+    {
+        throw new Exception\HaltException();
+    }
 }
