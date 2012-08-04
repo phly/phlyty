@@ -10,6 +10,7 @@ namespace Phlyty;
 
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\Uri\UriInterface;
 
 /**
  * Application container
@@ -114,6 +115,28 @@ class App
      */
     public function stop()
     {
+        throw new Exception\HaltException();
+    }
+
+    /**
+     * Redirect
+     *
+     * Stop execution, and redirect to the provided location.
+     *
+     * @param  string|UriInterface $uri
+     * @param  int $status
+     * @return void
+     * @throws Exception\HaltException
+     */
+    public function redirect($uri, $status = 302)
+    {
+        if ($uri instanceof UriInterface) {
+            $uri = $uri->toString();
+        }
+        $response = $this->response();
+        $response->getHeaders()->addHeaderLine('Location', $uri);
+        $response->setStatusCode($status);
+
         throw new Exception\HaltException();
     }
 }

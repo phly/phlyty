@@ -88,4 +88,49 @@ class AppTest extends TestCase
         $this->assertEquals(200, $this->app->response()->getStatusCode());
         $this->assertContains('foo bar', $this->app->response()->getContent());
     }
+
+    public function testRedirectShouldRaiseHaltException()
+    {
+        $this->setExpectedException('Phlyty\Exception\HaltException');
+        $this->app->redirect('http://github.com');
+    }
+
+    public function testRedirectShouldSet302ResponseStatusByDefault()
+    {
+        try {
+            $this->app->redirect('http://github.com');
+            $this->fail('HaltException expected');
+        } catch (Exception\HaltException $e) {
+        }
+
+        $this->assertEquals(302, $this->app->response()->getStatusCode());
+    }
+
+    public function testRedirectShouldSetResponseStatusBasedOnProvidedStatusCode()
+    {
+        try {
+            $this->app->redirect('http://github.com', 301);
+            $this->fail('HaltException expected');
+        } catch (Exception\HaltException $e) {
+        }
+
+        $this->assertEquals(301, $this->app->response()->getStatusCode());
+    }
+
+    public function testRedirectShouldSetLocationHeader()
+    {
+        try {
+            $this->app->redirect('http://github.com');
+            $this->fail('HaltException expected');
+        } catch (Exception\HaltException $e) {
+        }
+
+        $response = $this->app->response();
+        $headers  = $response->getHeaders();
+        $this->assertTrue($headers->has('Location'));
+
+        $location = $headers->get('Location');
+        $uri      = $location->getUri();
+        $this->assertEquals('http://github.com', $uri);
+    }
 }

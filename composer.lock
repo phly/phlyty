@@ -1,5 +1,5 @@
 {
-    "hash": "b4f1d1c16db1c39935460df76fa2e216",
+    "hash": "6b43d01acc7229072dfbb83fe786ce7c",
     "packages": [
         {
             "package": "phly/mustache",
@@ -21,6 +21,10 @@
         },
         {
             "package": "zendframework/zend-http",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-i18n",
             "version": "2.0.0rc2"
         },
         {
