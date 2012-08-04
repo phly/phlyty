@@ -220,4 +220,11 @@ class AppTest extends TestCase
         $map->via(__FUNCTION__);
         $this->assertTrue($map->respondsTo(__FUNCTION__));
     }
+
+    public function testCanSpecifyRouteName()
+    {
+        $map   = $this->app->map('/:controller', 'bogus-callback');
+        $map->name('controller');
+        $this->assertEquals('controller', $map->name());
+    }
 }

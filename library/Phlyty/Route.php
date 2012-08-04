@@ -200,4 +200,24 @@ class Route
         $method = strtoupper($method);
         return isset($this->methods[$method]);
     }
+
+    /**
+     * Retrieve and/or set the route name
+     *
+     * Sets the route name if a non-empty string is provided, and then returns
+     * the Route instance to allow a fluent interface.
+     *
+     * Otherwise, returns the route name.
+     *
+     * @param  null|string $name
+     * @return Route|string
+     */
+    public function name($name = null)
+    {
+        if (is_string($name) && !empty($name)) {
+            $this->name = $name;
+            return $this;
+        }
+        return $this->name;
+    }
 }
