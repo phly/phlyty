@@ -66,6 +66,13 @@ class App
     protected $routeIndex = -1;
 
     /**
+     * Whether or not we've already registered the route listener
+     *
+     * @var bool
+     */
+    protected $routeListenerRegistered = false;
+
+    /**
      * Routes
      *
      * @var Route[]
@@ -250,6 +257,16 @@ class App
     }
 
     /**
+     * Pass execution on to next matching route
+     *
+     * @throws Exception\PassException
+     */
+    public function pass()
+    {
+        throw new Exception\PassException();
+    }
+
+    /**
      * Map a route to a callback
      *
      * @param  string|Router\RouteInterface $route
@@ -375,6 +392,8 @@ class App
         try {
             $this->trigger('begin');
 
+            route:
+
             $request = $this->request();
             $method  = $request->getMethod();
             $route   = $this->route($request, $method);
@@ -384,6 +403,9 @@ class App
         } catch (Exception\HaltException $e) {
             // Handle a halt condition
             $this->trigger('halt');
+        } catch (Exception\PassException $e) {
+            // Pass handling on to next route that matches
+            goto route;
         } catch (Exception\PageNotFoundException $e) {
             // Handle a 404 condition
             $this->trigger('404');
@@ -428,6 +450,10 @@ class App
         }
 
         if (isset($this->namedRoutes[$name])) {
+            if ($route === $this->namedRoutes[$name]) {
+                return;
+            }
+
             throw new Exception\DuplicateRouteException(sprintf(
                 'Duplicate attempt to register route by name "%s" detected',
                 $name
@@ -454,20 +480,13 @@ class App
     }
 
     /**
-     * Route the request
-     *
-     * Attempts to match a route. If matched, sets $params and
-     * $routeIndex. Otherwise, throws an
-     * Exception\PageNotFoundException.
-     *
-     * @param  Request $request
-     * @param  string  $method
-     * @throws Exception\PageNotFoundException
+     * Register the route listener with the route event
      */
-    protected function route(Request $request, $method)
+    protected function registerRouteListener()
     {
-        $this->prepareRoutes();
-        $events = $this->events();
+        if ($this->routeListenerRegistered) {
+            return;
+        }
 
         $closure = function ($e) {
             $method = $e->getParam('method');
@@ -494,8 +513,27 @@ class App
         };
         $closure = $closure->bindTo($this);
 
-        $events->attach('route', $closure);;
-        $results = $events->trigger('route', $this, [
+        $this->events()->attach('route', $closure);;
+        $this->routeListenerRegistered = true;
+    }
+
+    /**
+     * Route the request
+     *
+     * Attempts to match a route. If matched, sets $params and
+     * $routeIndex. Otherwise, throws an
+     * Exception\PageNotFoundException.
+     *
+     * @param  Request $request
+     * @param  string  $method
+     * @throws Exception\PageNotFoundException
+     */
+    protected function route(Request $request, $method)
+    {
+        $this->prepareRoutes();
+        $this->registerRouteListener();
+
+        $results = $this->trigger('route', [
             'request' => $request,
             'method'  => $method,
         ]);

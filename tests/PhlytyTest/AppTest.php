@@ -405,4 +405,21 @@ class AppTest extends TestCase
         $this->assertTrue($test->status);
         $this->assertSame($exception, $test->exception);
     }
+
+    public function testCanPassToNextMatchingRoute()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent('Foo bar!');
+            $app->pass();
+        });
+        $bar = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent('FOO BAR!');
+        });
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('FOO BAR!', $response->sentContent);
+    }
 }
