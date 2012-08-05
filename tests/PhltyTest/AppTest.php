@@ -256,4 +256,19 @@ class AppTest extends TestCase
             $this->assertFalse($map->respondsTo($test));
         }
     }
+
+    public function setupRoutes()
+    {
+        $this->app->get('/foo', function () {});
+        $this->app->get('/bar', function () {});
+        $this->app->post('/bar', function () {});
+        $this->app->delete('/bar', function () {});
+    }
+
+    public function testRunningWithNoMatchingRoutesRaisesPageNotFoundException()
+    {
+        $this->setupRoutes();
+        $this->setExpectedException('Phlyty\Exception\PageNotFoundException');
+        $this->app->run();
+    }
 }

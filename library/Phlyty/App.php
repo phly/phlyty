@@ -22,6 +22,20 @@ use Zend\Uri\UriInterface;
 class App
 {
     /**
+     * Named routes - used to generate URLs
+     *
+     * @var array
+     */
+    protected $namedRoutes = array();
+
+    /**
+     * Parameters returned as the result of a route match
+     *
+     * @var null|Router\RouteMatch
+     */
+    protected $params;
+
+    /**
      * Request environment
      *
      * @var Request
@@ -36,11 +50,27 @@ class App
     protected $response;
 
     /**
+     * Index of route that matched
+     *
+     * @var null|int
+     */
+    protected $routeIndex;
+
+    /**
      * Routes
      *
      * @var Route[]
      */
     protected $routes;
+
+    /**
+     * Routes by method
+     *
+     * Array of method => Route[] pairs
+     *
+     * @var array
+     */
+    protected $routesByMethod = array();
 
     /**
      * Retrieve the request environment
@@ -256,5 +286,97 @@ class App
         $map = $this->map($route, $controller);
         $map->via('put');
         return $map;
+    }
+
+    /**
+     * Run the application
+     *
+     * @todo exception handling when preparing routes (?)
+     */
+    public function run()
+    {
+        $this->prepareRoutes();
+
+        $request = $this->request();
+        $method  = strtoupper($request->getMethod());
+        $this->route($request, $method);
+    }
+
+    /**
+     * Prepare routes
+     *
+     * Ensure no duplicate routes, determine what named routes are available,
+     * and determine which routes respond to which methods.
+     */
+    protected function prepareRoutes()
+    {
+        foreach ($this->routes as $index => $route) {
+            $this->registerNamedRoute($route);
+            $this->registerRouteMethods($route, $index);
+        }
+    }
+
+    /**
+     * Register a named route
+     *
+     * @param  Route $route
+     * @throws Exception\DuplicateRouteException if route with the same name already registered
+     */
+    protected function registerNamedRoute(Route $route)
+    {
+        $name = $route->name();
+
+        if (!$name) {
+            return;
+        }
+
+        if (isset($this->namedRoutes[$name])) {
+            throw new Exception\DuplicateRouteException(sprintf(
+                'Duplicate attempt to register route by name "%s" detected',
+                $name
+            ));
+        }
+
+        $this->namedRoutes[$name] = $route;
+    }
+
+    /**
+     * Determine what methods a route responds to
+     *
+     * @param  Route $route
+     * @param  int   $index
+     */
+    protected function registerRouteMethods(Route $route, $index)
+    {
+        foreach ($route->respondsTo() as $method) {
+            $this->routesByMethod[$method][$index] = $route;
+        }
+    }
+
+    /**
+     * Route the request
+     *
+     * Attempts to match a route. If matched, sets $params and
+     * $routeIndex. Otherwise, throws an
+     * Exception\PageNotFoundException.
+     *
+     * @param  Request $request
+     * @param  string  $method
+     */
+    protected function route(Request $request, $method)
+    {
+        if (!isset($this->routesByMethod[$method])) {
+            throw new Exception\PageNotFoundException();
+        }
+
+        foreach ($this->routesByMethod[$method] as $index => $route) {
+            $result = $route->route()->match($request);
+            if ($result) {
+                $this->routeIndex = $index;
+                $this->params     = $result;
+                return;
+            }
+        }
+        throw new Exception\PageNotFoundException();
     }
 }

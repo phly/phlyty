@@ -192,11 +192,18 @@ class Route
     /**
      * Does this route respond to the given method?
      *
-     * @param  string $method
-     * @return bool
+     * If no method is provided, returns array of all methods to which this
+     * route will respond.
+     *
+     * @param  null|string $method
+     * @return array|bool
      */
-    public function respondsTo($method)
+    public function respondsTo($method = null)
     {
+        if (null === $method) {
+            return $this->methods;
+        }
+
         $method = strtoupper($method);
         return isset($this->methods[$method]);
     }
