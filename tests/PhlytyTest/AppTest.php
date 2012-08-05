@@ -337,4 +337,72 @@ class AppTest extends TestCase
         $response = $this->app->response();
         $this->assertEquals('Foo bar!', $response->sentContent);
     }
+
+    public function testUnsuccessfulRoutingTriggers404Event()
+    {
+        $test = (object) ['status' => false];
+        $this->app->events()->attach('404', function ($app) use ($test) {
+            $test->status = true;
+        });
+        $this->app->run();
+        $this->assertTrue($test->status);
+    }
+
+    public function testCallingHaltTriggersHaltEvent()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->halt(418, "Calmez vous");
+        });
+
+        $test = (object) ['status' => false];
+        $this->app->events()->attach('halt', function ($app) use ($test) {
+            $test->status = true;
+        });
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+
+        $this->assertTrue($test->status);
+    }
+
+    public function testInvalidControllerTriggers501Event()
+    {
+        $foo = $this->app->get('/foo', 'bogus-controller');
+
+        $test = (object) ['status' => false];
+        $this->app->events()->attach('501', function ($app) use ($test) {
+            $test->status = true;
+        });
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+
+        $this->assertTrue($test->status);
+    }
+
+    public function testExceptionRaisedInControllerTriggers500Event()
+    {
+        $exception = new \DomainException();
+        $foo = $this->app->get('/foo', function ($app) use ($exception) {
+            throw $exception;
+        });
+
+        $test = (object) ['status' => false];
+        $this->app->events()->attach('500', function ($event) use ($test) {
+            $test->status = true;
+            $test->exception = $event->getParam('exception');
+        });
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+
+        $this->assertTrue($test->status);
+        $this->assertSame($exception, $test->exception);
+    }
 }

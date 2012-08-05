@@ -35,7 +35,7 @@ class App
      *
      * @var array
      */
-    protected $namedRoutes = array();
+    protected $namedRoutes = [];
 
     /**
      * Parameters returned as the result of a route match
@@ -70,7 +70,7 @@ class App
      *
      * @var Route[]
      */
-    protected $routes;
+    protected $routes = [];
 
     /**
      * Routes by method
@@ -79,7 +79,7 @@ class App
      *
      * @var array
      */
-    protected $routesByMethod = array();
+    protected $routesByMethod = [];
 
     /**
      * Retrieve event manager instance
@@ -381,18 +381,21 @@ class App
 
             $controller = $route->controller();
             $result     = call_user_func($controller, $this);
-
-            $this->trigger('finish');
         } catch (Exception\HaltException $e) {
             // Handle a halt condition
+            $this->trigger('halt');
         } catch (Exception\PageNotFoundException $e) {
             // Handle a 404 condition
+            $this->trigger('404');
         } catch (Exception\InvalidControllerException $e) {
             // Handle situation where controller is invalid
+            $this->trigger('501');
         } catch (\Exception $e) {
             // Handle all other exceptions
+            $this->trigger('500', ['exception' => $e]);
         }
 
+        $this->trigger('finish');
         $this->response()->send();
     }
 
