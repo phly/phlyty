@@ -293,12 +293,17 @@ class App
      *
      * @todo exception handling when preparing routes (?)
      * @todo 404 exception handling when routing
+     * @todo exception handling when dispatching (including handling HaltException, PageNotFoundException, InvalidControllerException)
      */
     public function run()
     {
         $request = $this->request();
         $method  = strtoupper($request->getMethod());
-        $this->route($request, $method);
+        $route   = $this->route($request, $method);
+
+        $controller = $route->controller();
+        $result     = call_user_func($controller, $this);
+        $this->response()->send();
     }
 
     /**
@@ -378,9 +383,10 @@ class App
             if ($result) {
                 $this->routeIndex = $index;
                 $this->params     = $result;
-                return;
+                return $route;
             }
         }
+
         throw new Exception\PageNotFoundException();
     }
 }

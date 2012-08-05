@@ -16,6 +16,7 @@ class AppTest extends TestCase
     public function setUp()
     {
         $this->app = new App();
+        $this->app->setResponse(new TestAsset\Response());
     }
 
     public function testLazyLoadsRequest()
@@ -26,7 +27,8 @@ class AppTest extends TestCase
 
     public function testLazyLoadsResponse()
     {
-        $response = $this->app->response();
+        $app      = new App();
+        $response = $app->response();
         $this->assertInstanceOf('Zend\Http\PhpEnvironment\Response', $response);
     }
 
@@ -318,5 +320,18 @@ class AppTest extends TestCase
         $this->assertEquals([$barPost], array_values($routesByMethod['POST']));
         $this->assertTrue(isset($routesByMethod['DELETE']));
         $this->assertEquals([$barDelete], array_values($routesByMethod['DELETE']));
+    }
+
+    public function testSuccessfulRoutingDispatchesController()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent('Foo bar!');
+        });
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('Foo bar!', $response->sentContent);
     }
 }
