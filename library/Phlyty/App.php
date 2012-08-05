@@ -8,6 +8,8 @@
 
 namespace Phlyty;
 
+use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerInterface;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Router;
@@ -21,6 +23,13 @@ use Zend\Uri\UriInterface;
  */
 class App
 {
+    /**
+     * Event manager instance
+     *
+     * @var EventManagerInterface
+     */
+    protected $events;
+
     /**
      * Named routes - used to generate URLs
      *
@@ -71,6 +80,33 @@ class App
      * @var array
      */
     protected $routesByMethod = array();
+
+    /**
+     * Retrieve event manager instance
+     *
+     * If not present, lazy-loads and registers one.
+     *
+     * @return EventManagerInterface
+     */
+    public function events()
+    {
+        if (!$this->events instanceof EventManagerInterface) {
+            $this->setEventManager(new EventManager());
+        }
+        return $this->events;
+    }
+
+    /**
+     * Set the event manager instance
+     *
+     * @param  EventManagerInterface $events
+     * @return App
+     */
+    public function setEventManager(EventManagerInterface $events)
+    {
+        $this->events = $events;
+        return $this;
+    }
 
     /**
      * Retrieve the request environment
@@ -369,24 +405,38 @@ class App
      *
      * @param  Request $request
      * @param  string  $method
+     * @throws Exception\PageNotFoundException
      */
     protected function route(Request $request, $method)
     {
         $this->prepareRoutes();
+        $events = $this->events();
 
-        if (!isset($this->routesByMethod[$method])) {
-            throw new Exception\PageNotFoundException();
-        }
-
-        foreach ($this->routesByMethod[$method] as $index => $route) {
-            $result = $route->route()->match($request);
-            if ($result) {
-                $this->routeIndex = $index;
-                $this->params     = $result;
-                return $route;
+        $closure = function ($e) {
+            $method = $e->getParam('method');
+            if (!isset($this->routesByMethod[$method])) {
+                throw new Exception\PageNotFoundException();
             }
-        }
 
-        throw new Exception\PageNotFoundException();
+            $request = $e->getParam('request');
+            foreach ($this->routesByMethod[$method] as $index => $route) {
+                $result = $route->route()->match($request);
+                if ($result) {
+                    $this->routeIndex = $index;
+                    $this->params     = $result;
+                    return $route;
+                }
+            }
+
+            throw new Exception\PageNotFoundException();
+        };
+        $closure = $closure->bindTo($this);
+
+        $events->attach('route', $closure);;
+        $results = $events->trigger('route', $this, [
+            'request' => $request,
+            'method'  => $method,
+        ]);
+        return $results->last();
     }
 }
