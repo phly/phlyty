@@ -63,7 +63,7 @@ class App
      *
      * @var null|int
      */
-    protected $routeIndex;
+    protected $routeIndex = -1;
 
     /**
      * Routes
@@ -94,6 +94,41 @@ class App
             $this->setEventManager(new EventManager());
         }
         return $this->events;
+    }
+
+    /**
+     * Create and return an application event instance
+     *
+     * Sets the target to the App object instance, and, if a route has been
+     * matched, adds it to the instance.
+     *
+     * @return AppEvent
+     */
+    public function event()
+    {
+        $event = new AppEvent();
+        $event->setTarget($this);
+        if (-1 < $this->routeIndex) {
+            $route = $this->routes[$this->routeIndex];
+            $event->setRoute($route);
+        }
+        return $event;
+    }
+
+    /**
+     * Trigger a named event
+     *
+     * Allows optionally passing more params if desired.
+     *
+     * @param  string $name
+     * @param  array $params
+     * @return \Zend\EventManager\ResponseCollection
+     */
+    public function trigger($name, array $params = [])
+    {
+        $event = $this->event();
+        $event->setParams($params);
+        return $this->events()->trigger($name, $event);
     }
 
     /**
@@ -330,15 +365,34 @@ class App
      * @todo exception handling when preparing routes (?)
      * @todo 404 exception handling when routing
      * @todo exception handling when dispatching (including handling HaltException, PageNotFoundException, InvalidControllerException)
+     *
+     * @triggers begin
      */
     public function run()
     {
-        $request = $this->request();
-        $method  = strtoupper($request->getMethod());
-        $route   = $this->route($request, $method);
+        $events  = $this->events();
 
-        $controller = $route->controller();
-        $result     = call_user_func($controller, $this);
+        try {
+            $this->trigger('begin');
+
+            $request = $this->request();
+            $method  = $request->getMethod();
+            $route   = $this->route($request, $method);
+
+            $controller = $route->controller();
+            $result     = call_user_func($controller, $this);
+
+            $this->trigger('finish');
+        } catch (Exception\HaltException $e) {
+            // Handle a halt condition
+        } catch (Exception\PageNotFoundException $e) {
+            // Handle a 404 condition
+        } catch (Exception\InvalidControllerException $e) {
+            // Handle situation where controller is invalid
+        } catch (\Exception $e) {
+            // Handle all other exceptions
+        }
+
         $this->response()->send();
     }
 
@@ -419,7 +473,12 @@ class App
             }
 
             $request = $e->getParam('request');
-            foreach ($this->routesByMethod[$method] as $index => $route) {
+            $routes  = $this->routesByMethod[$method];
+            foreach ($routes as $index => $route) {
+                if ($index <= $this->routeIndex) {
+                    // Skip over routes we've already looked at
+                    continue;
+                }
                 $result = $route->route()->match($request);
                 if ($result) {
                     $this->routeIndex = $index;

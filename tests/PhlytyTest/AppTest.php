@@ -271,8 +271,11 @@ class AppTest extends TestCase
     public function testRunningWithNoMatchingRoutesRaisesPageNotFoundException()
     {
         $this->setupRoutes();
+        $r = new ReflectionObject($this->app);
+        $routeMethod = $r->getMethod('route');
+        $routeMethod->setAccessible(true);
         $this->setExpectedException('Phlyty\Exception\PageNotFoundException');
-        $this->app->run();
+        $routeMethod->invoke($this->app, $this->app->request(), 'GET');
     }
 
     public function testRoutingSetsListOfNamedRoutes()
