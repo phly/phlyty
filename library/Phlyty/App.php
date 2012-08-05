@@ -379,11 +379,13 @@ class App
     /**
      * Run the application
      *
-     * @todo exception handling when preparing routes (?)
-     * @todo 404 exception handling when routing
-     * @todo exception handling when dispatching (including handling HaltException, PageNotFoundException, InvalidControllerException)
-     *
      * @triggers begin
+     * @triggers route
+     * @triggers halt
+     * @triggers 404
+     * @triggers 501
+     * @triggers 500
+     * @triggers finish
      */
     public function run()
     {
