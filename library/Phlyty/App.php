@@ -292,11 +292,10 @@ class App
      * Run the application
      *
      * @todo exception handling when preparing routes (?)
+     * @todo 404 exception handling when routing
      */
     public function run()
     {
-        $this->prepareRoutes();
-
         $request = $this->request();
         $method  = strtoupper($request->getMethod());
         $this->route($request, $method);
@@ -349,6 +348,9 @@ class App
     protected function registerRouteMethods(Route $route, $index)
     {
         foreach ($route->respondsTo() as $method) {
+            if (!isset($this->routesByMethod[$method])) {
+                $this->routesByMethod[$method] = [];
+            }
             $this->routesByMethod[$method][$index] = $route;
         }
     }
@@ -365,6 +367,8 @@ class App
      */
     protected function route(Request $request, $method)
     {
+        $this->prepareRoutes();
+
         if (!isset($this->routesByMethod[$method])) {
             throw new Exception\PageNotFoundException();
         }

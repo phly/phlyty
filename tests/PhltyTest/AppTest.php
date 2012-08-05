@@ -6,6 +6,7 @@ use Phlyty\App;
 use Phlyty\Exception;
 use Phlyty\Route;
 use PHPUnit_Framework_TestCase as TestCase;
+use ReflectionObject;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Router\Http as Routes;
@@ -270,5 +271,52 @@ class AppTest extends TestCase
         $this->setupRoutes();
         $this->setExpectedException('Phlyty\Exception\PageNotFoundException');
         $this->app->run();
+    }
+
+    public function testRoutingSetsListOfNamedRoutes()
+    {
+        $foo = $this->app->get('/foo', function () {})->name('foo');
+        $this->app->get('/bar', function () {});
+        $barPost = $this->app->post('/bar', function () {})->name('bar-post');
+        $this->app->delete('/bar', function () {});
+
+        $r = new ReflectionObject($this->app);
+        $routeMethod = $r->getMethod('route');
+        $routeMethod->setAccessible(true);
+        try {
+            $routeMethod->invoke($this->app, $this->app->request(), 'GET');
+            $this->fail('Successful routing not expected');
+        } catch (\Exception $e) {
+        }
+
+        $this->assertAttributeEquals(['foo' => $foo, 'bar-post' => $barPost], 'namedRoutes', $this->app);
+    }
+
+    public function testRoutingSetsListsOfRoutesByMethod()
+    {
+        $foo       = $this->app->get('/foo', function () {})->name('foo');
+        $bar       = $this->app->get('/bar', function () {});
+        $barPost   = $this->app->post('/bar', function () {})->name('bar-post');
+        $barDelete = $this->app->delete('/bar', function () {});
+
+        $r = new ReflectionObject($this->app);
+        $routeMethod = $r->getMethod('route');
+        $routeMethod->setAccessible(true);
+        try {
+            $routeMethod->invoke($this->app, $this->app->request(), 'GET');
+            $this->fail('Successful routing not expected');
+        } catch (\Exception $e) {
+        }
+
+        $routesByMethod = $r->getProperty('routesByMethod');
+        $routesByMethod->setAccessible(true);
+        $routesByMethod = $routesByMethod->getValue($this->app);
+
+        $this->assertTrue(isset($routesByMethod['GET']));
+        $this->assertEquals([$foo, $bar], array_values($routesByMethod['GET']));
+        $this->assertTrue(isset($routesByMethod['POST']));
+        $this->assertEquals([$barPost], array_values($routesByMethod['POST']));
+        $this->assertTrue(isset($routesByMethod['DELETE']));
+        $this->assertEquals([$barDelete], array_values($routesByMethod['DELETE']));
     }
 }

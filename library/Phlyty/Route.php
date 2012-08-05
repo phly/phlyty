@@ -201,7 +201,7 @@ class Route
     public function respondsTo($method = null)
     {
         if (null === $method) {
-            return $this->methods;
+            return array_keys($this->methods);
         }
 
         $method = strtoupper($method);
