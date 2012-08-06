@@ -1,5 +1,5 @@
 {
-    "hash": "6c3cb5034b6c4330396425683764cb66",
+    "hash": "d40c431042aa7be1950336441013fe75",
     "packages": [
         {
             "package": "phly/mustache",
@@ -13,6 +13,10 @@
         },
         {
             "package": "zendframework/zend-di",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-escaper",
             "version": "2.0.0rc2"
         },
         {

@@ -498,4 +498,29 @@ class AppTest extends TestCase
         $test = file_get_contents(__DIR__ . '/TestAsset/test.mustache');
         $this->assertContains($test, $this->app->response()->getContent());
     }
+
+    public function testViewModelReturnsMustacheViewModelByDefault()
+    {
+        $model = $this->app->viewModel();
+        $this->assertInstanceOf('Phlyty\View\MustacheViewModel', $model);
+    }
+
+    public function testSubsequentCallsToViewModelReturnSeparateInstances()
+    {
+        $model1 = $this->app->viewModel();
+        $this->assertInstanceOf('Phlyty\View\MustacheViewModel', $model1);
+        $model2 = $this->app->viewModel();
+        $this->assertInstanceOf('Phlyty\View\MustacheViewModel', $model2);
+        $this->assertNotSame($model1, $model2);
+    }
+
+    public function testCanProvideViewModelPrototype()
+    {
+        $model = (object) [];
+        $this->app->setViewModelPrototype($model);
+        $test  = $this->app->viewModel();
+        $this->assertInstanceOf('stdClass', $test);
+        $this->assertNotInstanceOf('Phlyty\View\MustacheViewModel', $test);
+        $this->assertNotSame($model, $test);
+    }
 }

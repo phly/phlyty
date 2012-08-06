@@ -21,6 +21,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
+        "zendframework/zend-escaper": "2.0.*",
         "zendframework/zend-eventmanager": "2.0.*",
         "zendframework/zend-http": "2.0.*",
         "zendframework/zend-i18n": "2.0.*",

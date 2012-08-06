@@ -114,6 +114,13 @@ class App
     protected $view;
 
     /**
+     * Prototype object for view models
+     * 
+     * @var object
+     */
+    protected $viewModelPrototype;
+
+    /**
      * Retrieve event manager instance
      *
      * If not present, lazy-loads and registers one.
@@ -272,6 +279,41 @@ class App
     public function setView(View\ViewInterface $view)
     {
         $this->view = $view;
+        return $this;
+    }
+
+    /**
+     * Retrieve a view model instance
+     *
+     * Always returns a new view model instance, cloned from the instance in
+     * $viewModelPrototype. If no prototype exists, creates one from 
+     * View\MustacheViewModel.
+     * 
+     * @return object
+     */
+    public function viewModel()
+    {
+        if (empty($this->viewModelPrototype)) {
+            $this->setViewModelPrototype(new View\MustacheViewModel($this));
+        }
+
+        $model = clone $this->viewModelPrototype;
+        return $model;
+    }
+
+    /**
+     * Set view model prototype object
+     * 
+     * @param  object $model 
+     * @return App
+     * @throws Exception\InvalidViewModelException
+     */
+    public function setViewModelPrototype($model)
+    {
+        if (!is_object($model)) {
+            throw new Exception\InvalidViewModelException('View model prototype must be an object');
+        }
+        $this->viewModelPrototype = $model;
         return $this;
     }
 
