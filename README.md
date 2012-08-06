@@ -7,9 +7,11 @@ Basically, ZF2 components are used to provide the boring parts:
 
 - Routing
 - HTTP request and response
-- Templating
 - Events
 - Logging
+
+I used [phly_mustache](http://weierophinney.github.com/phly_mustache) as the
+templating engine.
 
 Like a variety of other microframeworks, the core application object simply
 allows you to attach callables to defined routes. You then interact with the
@@ -18,3 +20,6 @@ application can then send back in the HTTP response.
 
 The goal is to use PHP 5.4 idioms and provide a lightweight mechanism for
 building prototypes and simple websites.
+
+At this time, the basic functionality is all written and tested; documentation
+needs be written.
