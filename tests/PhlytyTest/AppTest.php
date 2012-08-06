@@ -5,6 +5,7 @@ namespace PhlytyTest;
 use Phlyty\App;
 use Phlyty\Exception;
 use Phlyty\Route;
+use Phlyty\View;
 use PHPUnit_Framework_TestCase as TestCase;
 use ReflectionObject;
 use Zend\Http\PhpEnvironment\Request;
@@ -474,5 +475,27 @@ class AppTest extends TestCase
         $logger = new Logger();
         $this->app->setLog($logger);
         $this->assertSame($logger, $this->app->getLog());
+    }
+
+    public function testMustacheViewIsUsedByDefault()
+    {
+        $view = $this->app->view();
+        $this->assertInstanceOf('Phlyty\View\MustacheView', $view);
+    }
+
+    public function testCanInjectAlternateViewInstance()
+    {
+        $view = new View\MustacheView();
+        $this->app->setView($view);
+        $this->assertSame($view, $this->app->view());
+    }
+
+    public function testRenderRendersATemplateToTheResponse()
+    {
+        $view = $this->app->view();
+        $view->setTemplatePath(__DIR__ . '/TestAsset');
+        $this->app->render('test');
+        $test = file_get_contents(__DIR__ . '/TestAsset/test.mustache');
+        $this->assertContains($test, $this->app->response()->getContent());
     }
 }

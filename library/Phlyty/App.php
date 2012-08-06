@@ -107,6 +107,13 @@ class App
     protected $routesByMethod = [];
 
     /**
+     * View
+     * 
+     * @var View\ViewInterface
+     */
+    protected $view;
+
+    /**
      * Retrieve event manager instance
      *
      * If not present, lazy-loads and registers one.
@@ -219,6 +226,52 @@ class App
     public function setFlashMessenger(FlashMessenger $flashMessenger)
     {
         $this->flashMessenger = $flashMessenger;
+        return $this;
+    }
+
+    /**
+     * Retrieve view instance
+     *
+     * If none present, lazy-loads View\MustacheView instance.
+     * 
+     * @return View\ViewInterface
+     */
+    public function view()
+    {
+        if (!$this->view instanceof View\ViewInterface) {
+            $this->setView(new View\MustacheView());
+        }
+        return $this->view;
+    }
+
+    /**
+     * Render a template
+     *
+     * Renders a template, with any view model provided, and injects
+     * the content into the response object.
+     * 
+     * @param  string $template 
+     * @param  array|object $viewModel 
+     * @return App
+     */
+    public function render($template, $viewModel = [])
+    {
+        $view     = $this->view();
+        $content  = $view->render($template, $viewModel);
+        $response = $this->response();
+        $response->setContent($content);
+        return $this;
+    }
+
+    /**
+     * Set view object
+     * 
+     * @param  View\ViewInterface $view 
+     * @return App
+     */
+    public function setView(View\ViewInterface $view)
+    {
+        $this->view = $view;
         return $this;
     }
 
