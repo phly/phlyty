@@ -8,6 +8,7 @@
 
 namespace Phlyty\View;
 
+use Closure;
 use Phlyty\App;
 use Zend\Escaper\Escaper;
 
