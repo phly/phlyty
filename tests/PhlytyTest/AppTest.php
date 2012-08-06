@@ -422,4 +422,56 @@ class AppTest extends TestCase
         $response = $this->app->response();
         $this->assertEquals('FOO BAR!', $response->sentContent);
     }
+
+    public function testUrlForHelperAssemblesUrlBasedOnNameProvided()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent($app->urlFor('foo'));
+        })->name('foo');
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('/foo', $response->sentContent);
+    }
+
+    public function testUrlForHelperAssemblesUrlBasedOnNameAndParamsProvided()
+    {
+        $foo = $this->app->get('/foo/:id', function ($app) {
+            $app->response()->setContent($app->urlFor('foo', ['id' => 3]));
+        })->name('foo');
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo/1');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('/foo/3', $response->sentContent);
+    }
+
+    public function testUrlForHelperAssemblesUrlBasedOnCurrentRouteMatchWhenNoNameProvided()
+    {
+        $foo = $this->app->get('/foo/:id', function ($app) {
+            $app->response()->setContent($app->urlFor());
+        })->name('foo');
+        $request = $this->app->request();
+        $request->setMethod('GET')
+                ->setUri('/foo/1');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('/foo/1', $response->sentContent);
+    }
+
+    public function testComposesLoggerInstanceByDefault()
+    {
+        $logger = $this->app->getLog();
+        $this->assertInstanceOf('Zend\Log\Logger', $logger);
+    }
+
+    public function testCanInjectSpecificLoggerInstance()
+    {
+        $logger = new Logger();
+        $this->app->setLog($logger);
+        $this->assertSame($logger, $this->app->getLog());
+    }
 }

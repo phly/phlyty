@@ -377,6 +377,62 @@ class App
     }
 
     /**
+     * Return the route match parameters
+     *
+     * If none has been set yet, lazy instantiates an empty
+     * Router\RouteMatch container.
+     *
+     * @return Router\RouteMatch
+     */
+    public function params()
+    {
+        if (null === $this->params) {
+            $this->params = new Router\RouteMatch([]);
+        }
+        return $this->params;
+    }
+
+    /**
+     * Generates a URL based on a named route
+     *
+     * @param  string $route Named Route instance
+     * @param  array $params Parameters to use in url generation, if any
+     * @param  array $options Router\RouteInterface-specific options to use in url generation, if any
+     * @return string
+     */
+    public function urlFor($route = null, array $params = [], array $options = [])
+    {
+        if (null === $route) {
+            if (-1 === $this->routeIndex) {
+                throw new Exception\InvalidRouteException(
+                    'Cannot call urlFor() with empty arguments; no route matched in this request'
+                );
+            }
+            $route  = $this->routes[$this->routeIndex];
+            $params = array_merge($this->params()->getParams(), $params);
+        }
+
+        if (is_string($route)) {
+            if (!isset($this->namedRoutes[$route])) {
+                throw new Exception\InvalidRouteException(sprintf(
+                    'Route by name "%s" not found; cannot generate URL',
+                    $name
+                ));
+            }
+            $route = $this->namedRoutes[$route];
+        }
+
+        if (!$route instanceof Route) {
+            throw new Exception\InvalidRouteException(sprintf(
+                'Invalid route type provided to %s; expects a string',
+                __METHOD__
+            ));
+        }
+
+        return $route->route()->assemble($params, $options);
+    }
+
+    /**
      * Run the application
      *
      * @triggers begin

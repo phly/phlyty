@@ -1,5 +1,4 @@
 Implement helpers:
-- urlFor($name, $namedParameters)
 - view() -> get template engine
 - render($template, $vars) -> render a view (likely writes content to response)
 - flash($name, $message) - message available in the next request. Assigns $flash as object/placeholder to view
