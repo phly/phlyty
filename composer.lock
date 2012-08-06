@@ -1,5 +1,5 @@
 {
-    "hash": "6b43d01acc7229072dfbb83fe786ce7c",
+    "hash": "6c3cb5034b6c4330396425683764cb66",
     "packages": [
         {
             "package": "phly/mustache",
@@ -45,6 +45,10 @@
         },
         {
             "package": "zendframework/zend-servicemanager",
+            "version": "2.0.0rc2"
+        },
+        {
+            "package": "zendframework/zend-session",
             "version": "2.0.0rc2"
         },
         {

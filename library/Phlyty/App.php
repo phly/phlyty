@@ -14,6 +14,7 @@ use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Log\Logger;
 use Zend\Mvc\Router;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 use Zend\Uri\UriInterface;
 
 /**
@@ -30,6 +31,13 @@ class App
      * @var EventManagerInterface
      */
     protected $events;
+
+    /**
+     * Flash messenger instance
+     * 
+     * @var FlashMessenger
+     */
+    protected $flashMessenger;
 
     /**
      * Logger
@@ -184,6 +192,33 @@ class App
     public function setLog(Logger $log)
     {
         $this->log = $log;
+        return $this;
+    }
+
+    /**
+     * Get flash messenger instance
+     *
+     * Lazy instantiates one if none provided
+     * 
+     * @return FlashMessenger
+     */
+    public function getFlashMessenger()
+    {
+        if (!$this->flashMessenger instanceof FlashMessenger) {
+            $this->setFlashMessenger(new FlashMessenger());
+        }
+        return $this->flashMessenger;
+    }
+
+    /**
+     * Set flash messenger instance
+     * 
+     * @param  FlashMessenger $flashMessenger 
+     * @return App
+     */
+    public function setFlashMessenger(FlashMessenger $flashMessenger)
+    {
+        $this->flashMessenger = $flashMessenger;
         return $this;
     }
 
@@ -467,6 +502,26 @@ class App
         }
 
         return $route->route()->assemble($params, $options);
+    }
+
+    /**
+     * Create or retrieve a flash message
+     * 
+     * @param  string $name 
+     * @param  null|string $message 
+     * @return App|string
+     */
+    public function flash($name, $message = null)
+    {
+        $fm = $this->getFlashMessenger();
+        $fm->setNamespace($name);
+
+        if (null === $message) {
+            return $fm->getMessages();
+        }
+
+        $fm->addMessage($message);
+        return $this;
     }
 
     /**
