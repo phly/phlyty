@@ -12,6 +12,7 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\Log\Logger;
 use Zend\Mvc\Router;
 use Zend\Uri\UriInterface;
 
@@ -29,6 +30,15 @@ class App
      * @var EventManagerInterface
      */
     protected $events;
+
+    /**
+     * Logger
+     *
+     * By default, has no writers attached
+     * 
+     * @var Logger
+     */
+    protected $log;
 
     /**
      * Named routes - used to generate URLs
@@ -147,6 +157,33 @@ class App
     public function setEventManager(EventManagerInterface $events)
     {
         $this->events = $events;
+        return $this;
+    }
+
+    /**
+     * Retrieve logger
+     *
+     * Lazy instantiates one if none present.
+     * 
+     * @return Logger
+     */
+    public function getLog()
+    {
+        if (!$this->log instanceof Logger) {
+            $this->setLog(new Logger());
+        }
+        return $this->log;
+    }
+
+    /**
+     * Set logger
+     * 
+     * @param  Logger $log 
+     * @return App
+     */
+    public function setLog(Logger $log)
+    {
+        $this->log = $log;
         return $this;
     }
 

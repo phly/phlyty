@@ -9,6 +9,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 use ReflectionObject;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\Log\Logger;
 use Zend\Mvc\Router\Http as Routes;
 
 class AppTest extends TestCase
