@@ -1,6 +1,6 @@
 <?php
 /**
- * @link      http://github.com/weierophinney/Phlty for the canonical sournce
+ * @link      http://github.com/weierophinney/Phlyty for the canonical source
  * @copyright Copyright (c) 2012 Matthew Weier O'Phinney
  * @license   BSD 3-Clause
  * @package   Phlyty
@@ -19,8 +19,8 @@ interface ViewInterface
 {
     /**
      * Render a template, optionally passing a view model/variables
-     * 
-     * @param  string $template 
+     *
+     * @param  string $template
      * @param  mixed $viewModel
      * @return string
      */

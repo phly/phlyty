@@ -1,6 +1,6 @@
 <?php
 /**
- * @link      http://github.com/weierophinney/Phlty for the canonical sournce
+ * @link      http://github.com/weierophinney/Phlyty for the canonical source
  * @copyright Copyright (c) 2012 Matthew Weier O'Phinney
  * @license   BSD 3-Clause
  * @package   Phlyty
@@ -24,9 +24,10 @@ class MustacheView extends Mustache implements ViewInterface
      *
      * Proxies to parent object, but provides defaults for $viewModel and
      * $partials.
-     * 
-     * @param  mixed $template 
-     * @param  mixed $viewModel 
+     *
+     * @param  string $template  Either a template string or a template file in the template path
+     * @param  mixed  $viewModel An array or object with items to inject in the template
+     * @param  mixed  $partials  A list of partial names/template pairs for rendering as partials
      * @return string
      */
     public function render($template, $viewModel = [], $partials = null)

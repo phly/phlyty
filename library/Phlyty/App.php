@@ -1,6 +1,6 @@
 <?php
 /**
- * @link      http://github.com/weierophinney/Phlty for the canonical sournce
+ * @link      http://github.com/weierophinney/Phlyty for the canonical source
  * @copyright Copyright (c) 2012 Matthew Weier O'Phinney
  * @license   BSD 3-Clause
  * @package   Phlyty
@@ -34,7 +34,7 @@ class App
 
     /**
      * Flash messenger instance
-     * 
+     *
      * @var FlashMessenger
      */
     protected $flashMessenger;
@@ -43,7 +43,7 @@ class App
      * Logger
      *
      * By default, has no writers attached
-     * 
+     *
      * @var Logger
      */
     protected $log;
@@ -108,7 +108,7 @@ class App
 
     /**
      * View
-     * 
+     *
      * @var View\ViewInterface
      */
     protected $view;
@@ -179,7 +179,7 @@ class App
      * Retrieve logger
      *
      * Lazy instantiates one if none present.
-     * 
+     *
      * @return Logger
      */
     public function getLog()
@@ -192,8 +192,8 @@ class App
 
     /**
      * Set logger
-     * 
-     * @param  Logger $log 
+     *
+     * @param  Logger $log
      * @return App
      */
     public function setLog(Logger $log)
@@ -206,7 +206,7 @@ class App
      * Get flash messenger instance
      *
      * Lazy instantiates one if none provided
-     * 
+     *
      * @return FlashMessenger
      */
     public function getFlashMessenger()
@@ -219,8 +219,8 @@ class App
 
     /**
      * Set flash messenger instance
-     * 
-     * @param  FlashMessenger $flashMessenger 
+     *
+     * @param  FlashMessenger $flashMessenger
      * @return App
      */
     public function setFlashMessenger(FlashMessenger $flashMessenger)
@@ -233,7 +233,7 @@ class App
      * Retrieve view instance
      *
      * If none present, lazy-loads View\MustacheView instance.
-     * 
+     *
      * @return View\ViewInterface
      */
     public function view()
@@ -249,9 +249,9 @@ class App
      *
      * Renders a template, with any view model provided, and injects
      * the content into the response object.
-     * 
-     * @param  string $template 
-     * @param  array|object $viewModel 
+     *
+     * @param  string $template
+     * @param  array|object $viewModel
      * @return App
      */
     public function render($template, $viewModel = [])
@@ -265,8 +265,8 @@ class App
 
     /**
      * Set view object
-     * 
-     * @param  View\ViewInterface $view 
+     *
+     * @param  View\ViewInterface $view
      * @return App
      */
     public function setView(View\ViewInterface $view)
@@ -524,6 +524,7 @@ class App
      * @param  array $params Parameters to use in url generation, if any
      * @param  array $options Router\RouteInterface-specific options to use in url generation, if any
      * @return string
+     * @throws Exception\InvalidRouteException
      */
     public function urlFor($route = null, array $params = [], array $options = [])
     {
@@ -541,7 +542,7 @@ class App
             if (!isset($this->namedRoutes[$route])) {
                 throw new Exception\InvalidRouteException(sprintf(
                     'Route by name "%s" not found; cannot generate URL',
-                    $name
+                    $route
                 ));
             }
             $route = $this->namedRoutes[$route];
@@ -559,9 +560,9 @@ class App
 
     /**
      * Create or retrieve a flash message
-     * 
-     * @param  string $name 
-     * @param  null|string $message 
+     *
+     * @param  string $name
+     * @param  null|string $message
      * @return App|string
      */
     public function flash($name, $message = null)
@@ -716,7 +717,7 @@ class App
         };
         $closure = $closure->bindTo($this);
 
-        $this->events()->attach('route', $closure);;
+        $this->events()->attach('route', $closure);
         $this->routeListenerRegistered = true;
     }
 
@@ -729,6 +730,7 @@ class App
      *
      * @param  Request $request
      * @param  string  $method
+     * @return mixed The last handler return value
      * @throws Exception\PageNotFoundException
      */
     protected function route(Request $request, $method)
