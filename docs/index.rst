@@ -12,6 +12,7 @@ Contents:
    modules/routes
    modules/controllers
    modules/helpers
+   modules/events
 
 Api docs:
 ---------
