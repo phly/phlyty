@@ -21,5 +21,7 @@ application can then send back in the HTTP response.
 The goal is to use PHP 5.4 idioms and provide a lightweight mechanism for
 building prototypes and simple websites.
 
-At this time, the basic functionality is all written and tested; documentation
-needs be written.
+At this time, the basic functionality is all written and tested, and
+basic end-user and API documentation are now available via:
+
+- http://phlyty.rtfd.org
