@@ -134,4 +134,4 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 phpdoc:
-	$(PHPDOC) -t $(APIDIR) -d ../library --title phly_mustache --visibility public -p --template responsive
+	$(PHPDOC) -t $(APIDIR) -d ../library --title phlyty --visibility public -p --template responsive

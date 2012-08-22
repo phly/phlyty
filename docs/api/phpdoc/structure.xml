@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project version="2.0.0a8" title="phly_mustache">
+<project version="2.0.0a8" title="phlyty">
   <file path="App.php" hash="8f03cd3b6797eaaf016e1f257b6949b7" package="Phlyty">
     <docblock line="2">
       <description><![CDATA[]]></description>
@@ -1376,7 +1376,6 @@ the Route instance to allow a fluent interface.</p>
       <critical line="2" code="50008">No short description for file Route.php</critical>
     </parse_markers>
   </file>
-  <package name="Default" full_name="Default"/>
   <package name="Phlyty" full_name="Phlyty">
     <package name="Exception" full_name="Phlyty\Exception"/>
     <package name="View" full_name="Phlyty\View"/>
