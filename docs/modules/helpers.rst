@@ -132,7 +132,7 @@ another route and controller; or work with events.
         $logger->info('This is an informational message');
 
 HTTP-Related Helpers
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 A web application is really about receiving an HTTP request, deciding what to do
 with it, and returning an HTTP response back to the client. In ``Phlyty\App``,
@@ -200,7 +200,7 @@ the request and response objects help you with this.
         $app->response()->setContent($content);
 
 Route-Related Helpers
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 The main purpose of a microframework is to map URL paths to their handlers. Once
 you have, there are two principal route-related activities you will be
@@ -241,7 +241,7 @@ the URL, and you will need to generate URLs based on the routes you've defined.
         ]); // "/blog/2012/08/21"
 
 View-Related Helpers
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 The goal of a controller is to produce a response to return to the client. In
 most cases, that response will contain some content. In web applications, this
