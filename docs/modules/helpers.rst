@@ -7,7 +7,7 @@ Helpers
 class. These fall under roughly four categories:
 
 - Workflow-related helpers (``halt``, ``stop``, ``pass``, ``redirect``,
-  ``events``, ``event``, ``trigger``)
+  ``events``, ``event``, ``trigger``, ``getLog``)
 - HTTP-related helpers (``request``, ``response``)
 - Route-related helpers (``params``, ``urlFor``)
 - View-related helpers (``view``, ``viewModel``, ``render``, ``flash``)
@@ -116,6 +116,20 @@ another route and controller; or work with events.
         $app->get('/', function ($app) {
             $app->trigger('homepage', $app->params()->getParams());
         });
+
+``getLog()``
+    Gets the currently registered ``Zend\Log\Logger`` instance, lazy-loading one
+    if none is present. You will need to attach writers to the log instance, and
+    then invoke one or more logging methods.
+
+    .. code-block:: php
+
+        $logger = $app->getLog()
+        $logger->addWriter('stream', [ 
+            'stream'        => 'php://stderr',
+            'log_separator' => "\n",
+        ]);
+        $logger->info('This is an informational message');
 
 HTTP-Related Helpers
 ^^^^^^^^^^^^^^^^^^^^
