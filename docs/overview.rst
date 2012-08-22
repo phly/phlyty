@@ -147,6 +147,7 @@ From the App instance, you have the following helper methods available:
   listeners and trigger events.
 - ``event()`` returns a ``Phlyty\AppEvent`` instance with the current route
   composed.
+- ``trigger`` triggers an event.
 - ``view()`` returns the view renderer, which should implement
   ``Phlyty\View\ViewInterface``. You can call ``setView()`` to change the view
   implementation. Additionally, you can always instantiate and use your own view

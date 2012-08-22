@@ -13,6 +13,7 @@ Contents:
    modules/controllers
    modules/helpers
    modules/events
+   modules/views
 
 Api docs:
 ---------
