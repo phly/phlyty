@@ -10,6 +10,8 @@ Contents:
    
    overview
    modules/routes
+   modules/controllers
+   modules/helpers
 
 Api docs:
 ---------
