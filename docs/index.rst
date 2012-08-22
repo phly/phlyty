@@ -15,10 +15,15 @@ Contents:
    modules/events
    modules/views
 
-Api docs:
----------
+Api docs
+--------
 
 `API docs are available. <_static/phpdoc/index.html>`_
+
+Getting help
+------------
+
+- `Issue Tracker <https://github.com/weierophinney/phlyty>`
 
 
 Indices and tables
