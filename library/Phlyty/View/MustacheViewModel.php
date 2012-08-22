@@ -40,11 +40,11 @@ class MustacheViewModel
      * Constructor
      *
      * Receive and set the App instance as a protected property.
-     * If an Escaper instance is passed, it will be assigned; 
-     * otherwise, an Escaper instance will be instantiated and 
+     * If an Escaper instance is passed, it will be assigned;
+     * otherwise, an Escaper instance will be instantiated and
      * assigned.
-     * 
-     * @param  App          $app 
+     *
+     * @param  App          $app
      * @param  null|Escaper $escaper
      */
     public function __construct(App $app, Escaper $escaper = null)
@@ -60,7 +60,7 @@ class MustacheViewModel
 
     /**
      * Retrieve application instance
-     * 
+     *
      * @return App
      */
     public function __app()
@@ -70,7 +70,7 @@ class MustacheViewModel
 
     /**
      * Retrieve escaper instance
-     * 
+     *
      * @return Escaper
      */
     public function __escaper()
@@ -84,9 +84,9 @@ class MustacheViewModel
      * Allows using '$this' within the helper in order to access public
      * properties and methods. Binds the helper to the public property
      * given by $name.
-     * 
-     * @param  string $name 
-     * @param  callable $helper 
+     *
+     * @param  string $name
+     * @param  callable $helper
      * @return MustacheViewModel
      */
     public function bindHelper($name, callable $helper)

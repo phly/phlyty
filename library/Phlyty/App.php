@@ -115,7 +115,7 @@ class App
 
     /**
      * Prototype object for view models
-     * 
+     *
      * @var object
      */
     protected $viewModelPrototype;
@@ -286,9 +286,9 @@ class App
      * Retrieve a view model instance
      *
      * Always returns a new view model instance, cloned from the instance in
-     * $viewModelPrototype. If no prototype exists, creates one from 
+     * $viewModelPrototype. If no prototype exists, creates one from
      * View\MustacheViewModel.
-     * 
+     *
      * @return object
      */
     public function viewModel()
@@ -303,8 +303,8 @@ class App
 
     /**
      * Set view model prototype object
-     * 
-     * @param  object $model 
+     *
+     * @param  object $model
      * @return App
      * @throws Exception\InvalidViewModelException
      */
