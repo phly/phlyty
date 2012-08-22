@@ -1,6 +1,8 @@
 Phlyty - A Microframework using ZF2 components
 ==============================================
 
+[![Build Status](https://secure.travis-ci.org/weierophinney/phlyty.png?branch=master)](http://travis-ci.org/weierophinney/phlyty)
+
 Phlyty is a microframework using [ZF2 components](http://packages.zendframework.com/ "ZF2").
 
 Basically, ZF2 components are used to provide the boring parts:
