@@ -1,0 +1,1391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a8" title="phly_mustache">
+  <file path="App.php" hash="8f03cd3b6797eaaf016e1f257b6949b7" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <namespace-alias name="EventManager">Zend\EventManager\EventManager</namespace-alias>
+    <namespace-alias name="EventManagerInterface">Zend\EventManager\EventManagerInterface</namespace-alias>
+    <namespace-alias name="Request">Zend\Http\PhpEnvironment\Request</namespace-alias>
+    <namespace-alias name="Response">Zend\Http\PhpEnvironment\Response</namespace-alias>
+    <namespace-alias name="Logger">Zend\Log\Logger</namespace-alias>
+    <namespace-alias name="Router">Zend\Mvc\Router</namespace-alias>
+    <namespace-alias name="FlashMessenger">Zend\Mvc\Controller\Plugin\FlashMessenger</namespace-alias>
+    <namespace-alias name="UriInterface">Zend\Uri\UriInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Phlyty" line="26" package="Phlyty">
+      <extends/>
+      <name>App</name>
+      <full_name>\Phlyty\App</full_name>
+      <docblock line="20">
+        <description><![CDATA[Application container]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="20" name="category" description="Phlyty"/>
+        <tag line="20" name="package" description="Phlyty"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="130" package="Phlyty">
+        <name>events</name>
+        <full_name>events</full_name>
+        <docblock line="123">
+          <description><![CDATA[Retrieve event manager instance]]></description>
+          <long-description><![CDATA[<p>If not present, lazy-loads and registers one.</p>]]></long-description>
+          <tag line="123" name="return" description="" type="\Zend\EventManager\EventManagerInterface">
+            <type by_reference="false">\Zend\EventManager\EventManagerInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="146" package="Phlyty">
+        <name>event</name>
+        <full_name>event</full_name>
+        <docblock line="138">
+          <description><![CDATA[Create and return an application event instance]]></description>
+          <long-description><![CDATA[<p>Sets the target to the App object instance, and, if a route has been
+matched, adds it to the instance.</p>]]></long-description>
+          <tag line="138" name="return" description="" type="\Phlyty\AppEvent">
+            <type by_reference="false">\Phlyty\AppEvent</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="166" package="Phlyty">
+        <name>trigger</name>
+        <full_name>trigger</full_name>
+        <docblock line="157">
+          <description><![CDATA[Trigger a named event]]></description>
+          <long-description><![CDATA[<p>Allows optionally passing more params if desired.</p>]]></long-description>
+          <tag line="157" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="157" name="param" description="" type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="157" name="return" description="" type="\Zend\EventManager\ResponseCollection">
+            <type by_reference="false">\Zend\EventManager\ResponseCollection</type>
+          </tag>
+        </docblock>
+        <argument line="166">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="166">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="179" package="Phlyty">
+        <name>setEventManager</name>
+        <full_name>setEventManager</full_name>
+        <docblock line="173">
+          <description><![CDATA[Set the event manager instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="173" name="param" description="" type="\Zend\EventManager\EventManagerInterface" variable="$events">
+            <type by_reference="false">\Zend\EventManager\EventManagerInterface</type>
+          </tag>
+          <tag line="173" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="179">
+          <name>$events</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\EventManager\EventManagerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="192" package="Phlyty">
+        <name>getLog</name>
+        <full_name>getLog</full_name>
+        <docblock line="185">
+          <description><![CDATA[Retrieve logger]]></description>
+          <long-description><![CDATA[<p>Lazy instantiates one if none present.</p>]]></long-description>
+          <tag line="185" name="return" description="" type="\Zend\Log\Logger">
+            <type by_reference="false">\Zend\Log\Logger</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="206" package="Phlyty">
+        <name>setLog</name>
+        <full_name>setLog</full_name>
+        <docblock line="200">
+          <description><![CDATA[Set logger]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="200" name="param" description="" type="\Zend\Log\Logger" variable="$log">
+            <type by_reference="false">\Zend\Log\Logger</type>
+          </tag>
+          <tag line="200" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="206">
+          <name>$log</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\Log\Logger</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="219" package="Phlyty">
+        <name>getFlashMessenger</name>
+        <full_name>getFlashMessenger</full_name>
+        <docblock line="212">
+          <description><![CDATA[Get flash messenger instance]]></description>
+          <long-description><![CDATA[<p>Lazy instantiates one if none provided</p>]]></long-description>
+          <tag line="212" name="return" description="" type="\Zend\Mvc\Controller\Plugin\FlashMessenger">
+            <type by_reference="false">\Zend\Mvc\Controller\Plugin\FlashMessenger</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="233" package="Phlyty">
+        <name>setFlashMessenger</name>
+        <full_name>setFlashMessenger</full_name>
+        <docblock line="227">
+          <description><![CDATA[Set flash messenger instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="227" name="param" description="" type="\Zend\Mvc\Controller\Plugin\FlashMessenger" variable="$flashMessenger">
+            <type by_reference="false">\Zend\Mvc\Controller\Plugin\FlashMessenger</type>
+          </tag>
+          <tag line="227" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="233">
+          <name>$flashMessenger</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\Mvc\Controller\Plugin\FlashMessenger</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="246" package="Phlyty">
+        <name>view</name>
+        <full_name>view</full_name>
+        <docblock line="239">
+          <description><![CDATA[Retrieve view instance]]></description>
+          <long-description><![CDATA[<p>If none present, lazy-loads View\MustacheView instance.</p>]]></long-description>
+          <tag line="239" name="return" description="" type="\Phlyty\View\ViewInterface">
+            <type by_reference="false">\Phlyty\View\ViewInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="264" package="Phlyty">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="254">
+          <description><![CDATA[Render a template]]></description>
+          <long-description><![CDATA[<p>Renders a template, with any view model provided, and injects
+the content into the response object.</p>]]></long-description>
+          <tag line="254" name="param" description="" type="string" variable="$template">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="254" name="param" description="" type="array|object" variable="$viewModel">
+            <type by_reference="false">array</type>
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="254" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="264">
+          <name>$template</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="264">
+          <name>$viewModel</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="279" package="Phlyty">
+        <name>setView</name>
+        <full_name>setView</full_name>
+        <docblock line="273">
+          <description><![CDATA[Set view object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="273" name="param" description="" type="\Phlyty\View\ViewInterface" variable="$view">
+            <type by_reference="false">\Phlyty\View\ViewInterface</type>
+          </tag>
+          <tag line="273" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="279">
+          <name>$view</name>
+          <default><![CDATA[]]></default>
+          <type>\Phlyty\View\ViewInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="294" package="Phlyty">
+        <name>viewModel</name>
+        <full_name>viewModel</full_name>
+        <docblock line="285">
+          <description><![CDATA[Retrieve a view model instance]]></description>
+          <long-description><![CDATA[<p>Always returns a new view model instance, cloned from the instance in
+$viewModelPrototype. If no prototype exists, creates one from
+View\MustacheViewModel.</p>]]></long-description>
+          <tag line="285" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="311" package="Phlyty">
+        <name>setViewModelPrototype</name>
+        <full_name>setViewModelPrototype</full_name>
+        <docblock line="304">
+          <description><![CDATA[Set view model prototype object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="304" name="param" description="" type="object" variable="$model">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="304" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+          <tag line="304" name="throws" description="" type="\Phlyty\Exception\InvalidViewModelException">
+            <type by_reference="false">\Phlyty\Exception\InvalidViewModelException</type>
+          </tag>
+        </docblock>
+        <argument line="311">
+          <name>$model</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="325" package="Phlyty">
+        <name>request</name>
+        <full_name>request</full_name>
+        <docblock line="320">
+          <description><![CDATA[Retrieve the request environment]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="320" name="return" description="" type="\Zend\Http\PhpEnvironment\Request">
+            <type by_reference="false">\Zend\Http\PhpEnvironment\Request</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="339" package="Phlyty">
+        <name>setRequest</name>
+        <full_name>setRequest</full_name>
+        <docblock line="333">
+          <description><![CDATA[Set the request object instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="333" name="param" description="" type="\Zend\Http\PhpEnvironment\Request" variable="$request">
+            <type by_reference="false">\Zend\Http\PhpEnvironment\Request</type>
+          </tag>
+          <tag line="333" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="339">
+          <name>$request</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\Http\PhpEnvironment\Request</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="350" package="Phlyty">
+        <name>response</name>
+        <full_name>response</full_name>
+        <docblock line="345">
+          <description><![CDATA[Retrieve the response environment]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="345" name="return" description="" type="\Zend\Http\PhpEnvironment\Response">
+            <type by_reference="false">\Zend\Http\PhpEnvironment\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="364" package="Phlyty">
+        <name>setResponse</name>
+        <full_name>setResponse</full_name>
+        <docblock line="358">
+          <description><![CDATA[Set the response object instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="358" name="param" description="" type="\Zend\Http\PhpEnvironment\Response" variable="$response">
+            <type by_reference="false">\Zend\Http\PhpEnvironment\Response</type>
+          </tag>
+          <tag line="358" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+        <argument line="364">
+          <name>$response</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\Http\PhpEnvironment\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="382" package="Phlyty">
+        <name>halt</name>
+        <full_name>halt</full_name>
+        <docblock line="370">
+          <description><![CDATA[Halt execution]]></description>
+          <long-description><![CDATA[<p>Halts execution, and sets the response status code to $status, as well
+as sets the response body to the provided message (if any). Any previous
+content in the response body will be overwritten.</p>]]></long-description>
+          <tag line="370" name="param" description="HTTP response status" type="int" variable="$status">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="370" name="param" description="HTTP response body" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="370" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="370" name="throws" description="" type="\Phlyty\Exception\HaltException">
+            <type by_reference="false">\Phlyty\Exception\HaltException</type>
+          </tag>
+        </docblock>
+        <argument line="382">
+          <name>$status</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="382">
+          <name>$message</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="399" package="Phlyty">
+        <name>stop</name>
+        <full_name>stop</full_name>
+        <docblock line="390">
+          <description><![CDATA[Stop execution]]></description>
+          <long-description><![CDATA[<p>Stops execution immediately, returning the response as it currently
+stands.</p>]]></long-description>
+          <tag line="390" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="390" name="throws" description="" type="\Phlyty\Exception\HaltException">
+            <type by_reference="false">\Phlyty\Exception\HaltException</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="414" package="Phlyty">
+        <name>redirect</name>
+        <full_name>redirect</full_name>
+        <docblock line="404">
+          <description><![CDATA[Redirect]]></description>
+          <long-description><![CDATA[<p>Stop execution, and redirect to the provided location.</p>]]></long-description>
+          <tag line="404" name="param" description="" type="string|\Zend\Uri\UriInterface" variable="$uri">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Uri\UriInterface</type>
+          </tag>
+          <tag line="404" name="param" description="" type="int" variable="$status">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="404" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="404" name="throws" description="" type="\Phlyty\Exception\HaltException">
+            <type by_reference="false">\Phlyty\Exception\HaltException</type>
+          </tag>
+        </docblock>
+        <argument line="414">
+          <name>$uri</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="414">
+          <name>$status</name>
+          <default><![CDATA[302]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="431" package="Phlyty">
+        <name>pass</name>
+        <full_name>pass</full_name>
+        <docblock line="426">
+          <description><![CDATA[Pass execution on to next matching route]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="426" name="throws" description="" type="\Phlyty\Exception\PassException">
+            <type by_reference="false">\Phlyty\Exception\PassException</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="444" package="Phlyty">
+        <name>map</name>
+        <full_name>map</full_name>
+        <docblock line="436">
+          <description><![CDATA[Map a route to a callback]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="436" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="436" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="436" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+          <tag line="436" name="throws" description="" type="\Phlyty\Exception\InvalidRouteException">
+            <type by_reference="false">\Phlyty\Exception\InvalidRouteException</type>
+          </tag>
+        </docblock>
+        <argument line="444">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="444">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="469" package="Phlyty">
+        <name>delete</name>
+        <full_name>delete</full_name>
+        <docblock line="462">
+          <description><![CDATA[Add a route for a DELETE request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="462" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="462" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="462" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="469">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="469">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="483" package="Phlyty">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="476">
+          <description><![CDATA[Add a route for a GET request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="476" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="476" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="476" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="483">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="483">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="497" package="Phlyty">
+        <name>options</name>
+        <full_name>options</full_name>
+        <docblock line="490">
+          <description><![CDATA[Add a route for a OPTIONS request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="490" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="490" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="490" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="497">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="497">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="511" package="Phlyty">
+        <name>patch</name>
+        <full_name>patch</full_name>
+        <docblock line="504">
+          <description><![CDATA[Add a route for a PATCH request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="504" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="504" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="504" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="511">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="511">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="525" package="Phlyty">
+        <name>post</name>
+        <full_name>post</full_name>
+        <docblock line="518">
+          <description><![CDATA[Add a route for a POST request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="518" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="518" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="518" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="525">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="525">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="539" package="Phlyty">
+        <name>put</name>
+        <full_name>put</full_name>
+        <docblock line="532">
+          <description><![CDATA[Add a route for a PUT request]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="532" name="param" description="" type="string|\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="532" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="532" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+        <argument line="539">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="539">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="554" package="Phlyty">
+        <name>params</name>
+        <full_name>params</full_name>
+        <docblock line="546">
+          <description><![CDATA[Return the route match parameters]]></description>
+          <long-description><![CDATA[<p>If none has been set yet, lazy instantiates an empty
+Router\RouteMatch container.</p>]]></long-description>
+          <tag line="546" name="return" description="" type="\Zend\Mvc\Router\RouteMatch">
+            <type by_reference="false">\Zend\Mvc\Router\RouteMatch</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="571" package="Phlyty">
+        <name>urlFor</name>
+        <full_name>urlFor</full_name>
+        <docblock line="562">
+          <description><![CDATA[Generates a URL based on a named route]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="562" name="param" description="Named Route instance" type="string" variable="$route">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="562" name="param" description="Parameters to use in url generation, if any" type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="562" name="param" description="Router\RouteInterface-specific options to use in url generation, if any" type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="562" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="562" name="throws" description="" type="\Phlyty\Exception\InvalidRouteException">
+            <type by_reference="false">\Phlyty\Exception\InvalidRouteException</type>
+          </tag>
+        </docblock>
+        <argument line="571">
+          <name>$route</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="571">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="571">
+          <name>$options</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="610" package="Phlyty">
+        <name>flash</name>
+        <full_name>flash</full_name>
+        <docblock line="603">
+          <description><![CDATA[Create or retrieve a flash message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="603" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="603" name="param" description="" type="null|string" variable="$message">
+            <type by_reference="false">null</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="603" name="return" description="" type="\Phlyty\App|string">
+            <type by_reference="false">\Phlyty\App</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="610">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="610">
+          <name>$message</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="634" package="Phlyty">
+        <name>run</name>
+        <full_name>run</full_name>
+        <docblock line="623">
+          <description><![CDATA[Run the application]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="623" name="triggers" description="begin"/>
+          <tag line="623" name="triggers" description="route"/>
+          <tag line="623" name="triggers" description="halt"/>
+          <tag line="623" name="triggers" description="404"/>
+          <tag line="623" name="triggers" description="501"/>
+          <tag line="623" name="triggers" description="500"/>
+          <tag line="623" name="triggers" description="finish"/>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file App.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/PageNotFoundException.php" hash="40fe260c02b73b32ca7242b6a4b0afab" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\Exception</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>PageNotFoundException</name>
+      <full_name>\Phlyty\Exception\PageNotFoundException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating a 404 condition]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/PageNotFoundException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/InvalidMethodException.php" hash="f11ec911b9006172949d20f420225e93" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\InvalidArgumentException</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>InvalidMethodException</name>
+      <full_name>\Phlyty\Exception\InvalidMethodException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating an invalid HTTP method]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/InvalidMethodException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/HaltException.php" hash="f5cf2aa2e8fd957678a237cc4a0d0ef9" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\Exception</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>HaltException</name>
+      <full_name>\Phlyty\Exception\HaltException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating a halt condition]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/HaltException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/DuplicateRouteException.php" hash="736bc0fa95adc2260b2c23789074519d" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\DomainException</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>DuplicateRouteException</name>
+      <full_name>\Phlyty\Exception\DuplicateRouteException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating a duplicate route was detected]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/DuplicateRouteException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/InvalidViewModelException.php" hash="b660bc5353a67366270e000f75a87f8f" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\InvalidArgumentException</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>InvalidViewModelException</name>
+      <full_name>\Phlyty\Exception\InvalidViewModelException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating an invalid view model prototype]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/InvalidViewModelException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/InvalidControllerException.php" hash="54a2205da6bf4da29b06abd92b334687" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\DomainException</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>InvalidControllerException</name>
+      <full_name>\Phlyty\Exception\InvalidControllerException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating an invalid controller]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/InvalidControllerException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/ExceptionInterface.php" hash="b0963ed55119c8285be7a4df3f1a68ed" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <interface namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <name>ExceptionInterface</name>
+      <full_name>\Phlyty\Exception\ExceptionInterface</full_name>
+      <docblock line="11">
+        <description><![CDATA[Marker interface for Phlyty exceptions]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </interface>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/ExceptionInterface.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/InvalidRouteException.php" hash="615e11b699d9043b8ce2a50f773225b3" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\InvalidArgumentException</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>InvalidRouteException</name>
+      <full_name>\Phlyty\Exception\InvalidRouteException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating an invalid route type]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/InvalidRouteException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Exception/PassException.php" hash="9b5153a126e9697437aa55d367c4c39f" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Phlyty\Exception" line="18" package="Phlyty\Exception">
+      <extends>\Exception</extends>
+      <implements>\Phlyty\Exception\ExceptionInterface</implements>
+      <name>PassException</name>
+      <full_name>\Phlyty\Exception\PassException</full_name>
+      <docblock line="11">
+        <description><![CDATA[Exception indicating we should pass on to next matching route]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="Exception"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Exception/PassException.php</critical>
+    </parse_markers>
+  </file>
+  <file path="AppEvent.php" hash="12f9132208ab86ad01a07fe4eabd7547" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <namespace-alias name="Event">Zend\EventManager\Event</namespace-alias>
+    <class final="false" abstract="false" namespace="Phlyty" line="19" package="Phlyty">
+      <extends>\Zend\EventManager\Event</extends>
+      <name>AppEvent</name>
+      <full_name>\Phlyty\AppEvent</full_name>
+      <docblock line="13">
+        <description><![CDATA[Application event]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="category" description="Phlyty"/>
+        <tag line="13" name="package" description="Phlyty"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="34" package="Phlyty">
+        <name>setRoute</name>
+        <full_name>setRoute</full_name>
+        <docblock line="28">
+          <description><![CDATA[Set matched route]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="28" name="param" description="" type="\Phlyty\Route" variable="$route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+          <tag line="28" name="return" description="" type="\Phlyty\AppEvent">
+            <type by_reference="false">\Phlyty\AppEvent</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type>\Phlyty\Route</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="45" package="Phlyty">
+        <name>getRoute</name>
+        <full_name>getRoute</full_name>
+        <docblock line="40">
+          <description><![CDATA[Retrieve matched route]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="return" description="" type="null|\Phlyty\Route">
+            <type by_reference="false">null</type>
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file AppEvent.php</critical>
+    </parse_markers>
+  </file>
+  <file path="View/MustacheViewModel.php" hash="b897fcc107b47eb5ab4c5c0d8385abbb" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <namespace-alias name="Closure">Closure</namespace-alias>
+    <namespace-alias name="App">Phlyty\App</namespace-alias>
+    <namespace-alias name="Escaper">Zend\Escaper\Escaper</namespace-alias>
+    <class final="false" abstract="false" namespace="Phlyty\View" line="27" package="Phlyty\View">
+      <extends/>
+      <name>MustacheViewModel</name>
+      <full_name>\Phlyty\View\MustacheViewModel</full_name>
+      <docblock line="15">
+        <description><![CDATA[Base view model for use with Mustache.]]></description>
+        <long-description><![CDATA[<p>The main purpose of this class is to provide the view model with the App
+instance, thus giving it access to the various helper methods available in
+that class. Additionally, it provides an instance of Escaper, allowing you
+to do context-specific escaping within helpers you define in the view model.</p>]]></long-description>
+        <tag line="15" name="category" description="Phlyty"/>
+        <tag line="15" name="package" description="Phlyty"/>
+        <tag line="15" name="subpackage" description="View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="50" package="Phlyty\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="39">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[<p>Receive and set the App instance as a protected property.
+If an Escaper instance is passed, it will be assigned;
+otherwise, an Escaper instance will be instantiated and
+assigned.</p>]]></long-description>
+          <tag line="39" name="param" description="" type="\Phlyty\App" variable="$app">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+          <tag line="39" name="param" description="" type="null|\Zend\Escaper\Escaper" variable="$escaper">
+            <type by_reference="false">null</type>
+            <type by_reference="false">\Zend\Escaper\Escaper</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$app</name>
+          <default><![CDATA[]]></default>
+          <type>\Phlyty\App</type>
+        </argument>
+        <argument line="50">
+          <name>$escaper</name>
+          <default><![CDATA[null]]></default>
+          <type>\Zend\Escaper\Escaper</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="66" package="Phlyty\View">
+        <name>__app</name>
+        <full_name>__app</full_name>
+        <docblock line="61">
+          <description><![CDATA[Retrieve application instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="return" description="" type="\Phlyty\App">
+            <type by_reference="false">\Phlyty\App</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="76" package="Phlyty\View">
+        <name>__escaper</name>
+        <full_name>__escaper</full_name>
+        <docblock line="71">
+          <description><![CDATA[Retrieve escaper instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="return" description="" type="\Zend\Escaper\Escaper">
+            <type by_reference="false">\Zend\Escaper\Escaper</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="92" package="Phlyty\View">
+        <name>bindHelper</name>
+        <full_name>bindHelper</full_name>
+        <docblock line="81">
+          <description><![CDATA[Bind a helper within the view model object's context]]></description>
+          <long-description><![CDATA[<p>Allows using '$this' within the helper in order to access public
+properties and methods. Binds the helper to the public property
+given by $name.</p>]]></long-description>
+          <tag line="81" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="81" name="param" description="" type="\Phlyty\View\callable" variable="$helper">
+            <type by_reference="false">\Phlyty\View\callable</type>
+          </tag>
+          <tag line="81" name="return" description="" type="\Phlyty\View\MustacheViewModel">
+            <type by_reference="false">\Phlyty\View\MustacheViewModel</type>
+          </tag>
+        </docblock>
+        <argument line="92">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="92">
+          <name>$helper</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file View/MustacheViewModel.php</critical>
+      <critical line="29" code="50019">No short description for property $app</critical>
+      <critical line="34" code="50019">No short description for property $escaper</critical>
+      <error line="81" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $helper in bindHelper()</error>
+    </parse_markers>
+  </file>
+  <file path="View/ViewInterface.php" hash="9c130ac0d1d78c45879f13c11b29e85c" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <interface namespace="Phlyty\View" line="18" package="Phlyty\View">
+      <name>ViewInterface</name>
+      <full_name>\Phlyty\View\ViewInterface</full_name>
+      <docblock line="11">
+        <description><![CDATA[View interface]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="category" description="Phlyty"/>
+        <tag line="11" name="package" description="Phlyty"/>
+        <tag line="11" name="subpackage" description="View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="27" package="Phlyty\View">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="20">
+          <description><![CDATA[Render a template, optionally passing a view model/variables]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="20" name="param" description="" type="string" variable="$template">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="20" name="param" description="" type="mixed" variable="$viewModel">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="20" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="27">
+          <name>$template</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="27">
+          <name>$viewModel</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file View/ViewInterface.php</critical>
+    </parse_markers>
+  </file>
+  <file path="View/MustacheView.php" hash="ac7c18b84b801c91dbb1a69bf56eba93" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <namespace-alias name="Mustache">Phly\Mustache\Mustache</namespace-alias>
+    <class final="false" abstract="false" namespace="Phlyty\View" line="20" package="Phlyty\View">
+      <extends>\Phly\Mustache\Mustache</extends>
+      <implements>\Phlyty\View\ViewInterface</implements>
+      <name>MustacheView</name>
+      <full_name>\Phlyty\View\MustacheView</full_name>
+      <docblock line="13">
+        <description><![CDATA[Mustache view -- proxies to phly_mustache]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="category" description="Phlyty"/>
+        <tag line="13" name="package" description="Phlyty"/>
+        <tag line="13" name="subpackage" description="View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty\View" line="33" package="Phlyty\View">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="22">
+          <description><![CDATA[Render a template]]></description>
+          <long-description><![CDATA[<p>Proxies to parent object, but provides defaults for $viewModel and
+$partials.</p>]]></long-description>
+          <tag line="22" name="param" description="Either a template string or a template file in the template path" type="string" variable="$template">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="An array or object with items to inject in the template" type="mixed" variable="$viewModel">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="22" name="param" description="A list of partial names/template pairs for rendering as partials" type="mixed" variable="$partials">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="22" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$template</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$viewModel</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$partials</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file View/MustacheView.php</critical>
+    </parse_markers>
+  </file>
+  <file path="Route.php" hash="75c312e4c1716dda13eda00bb9a99587" package="Phlyty">
+    <docblock line="2">
+      <description><![CDATA[]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="link" description="for the canonical source" link="http://github.com/weierophinney/Phlyty"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2012 Matthew Weier O'Phinney"/>
+      <tag line="2" name="license" description="BSD 3-Clause"/>
+      <tag line="2" name="package" description="Phlyty"/>
+    </docblock>
+    <namespace-alias name="Closure">Closure</namespace-alias>
+    <namespace-alias name="Router">Zend\Mvc\Router</namespace-alias>
+    <class final="false" abstract="false" namespace="Phlyty" line="23" package="Phlyty">
+      <extends/>
+      <name>Route</name>
+      <full_name>\Phlyty\Route</full_name>
+      <docblock line="14">
+        <description><![CDATA[Route]]></description>
+        <long-description><![CDATA[<p>Encapsulates the route, the callback to execute, and the methods it will
+respond to.</p>]]></long-description>
+        <tag line="14" name="category" description="Phlyty"/>
+        <tag line="14" name="package" description="Phlyty"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Phlyty" line="73" package="Phlyty">
+        <name>allowMethod</name>
+        <full_name>allowMethod</full_name>
+        <docblock line="67">
+          <description><![CDATA[Add an HTTP method you will allow]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="param" description="" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="90" package="Phlyty">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="82">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[<p>Accepts the router and controller.</p>]]></long-description>
+          <tag line="82" name="param" description="" type="\Zend\Mvc\Router\RouteInterface" variable="$route">
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+          <tag line="82" name="param" description="" type="\Phlyty\callable" variable="$controller">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+        </docblock>
+        <argument line="90">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type>\Zend\Mvc\Router\RouteInterface</type>
+        </argument>
+        <argument line="90">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="101" package="Phlyty">
+        <name>route</name>
+        <full_name>route</full_name>
+        <docblock line="96">
+          <description><![CDATA[Get the actual route interface]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="return" description="" type="\Zend\Mvc\Router\RouteInterface">
+            <type by_reference="false">\Zend\Mvc\Router\RouteInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="112" package="Phlyty">
+        <name>controller</name>
+        <full_name>controller</full_name>
+        <docblock line="106">
+          <description><![CDATA[Retrieve controller assigned to this route]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="106" name="return" description="" type="\Phlyty\callable">
+            <type by_reference="false">\Phlyty\callable</type>
+          </tag>
+          <tag line="106" name="throws" description="" type="\Phlyty\Exception\InvalidControllerException">
+            <type by_reference="false">\Phlyty\Exception\InvalidControllerException</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="165" package="Phlyty">
+        <name>via</name>
+        <full_name>via</full_name>
+        <docblock line="156">
+          <description><![CDATA[Assign one or more methods this route will respond to]]></description>
+          <long-description><![CDATA[<p>Additional arguments will be used as additional methods.</p>]]></long-description>
+          <tag line="156" name="param" description="" type="string|array" variable="$method">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="156" name="return" description="" type="\Phlyty\Route">
+            <type by_reference="false">\Phlyty\Route</type>
+          </tag>
+          <tag line="156" name="throws" description="" type="\Phlyty\Exception\InvalidMethodException">
+            <type by_reference="false">\Phlyty\Exception\InvalidMethodException</type>
+          </tag>
+        </docblock>
+        <argument line="165">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="203" package="Phlyty">
+        <name>respondsTo</name>
+        <full_name>respondsTo</full_name>
+        <docblock line="194">
+          <description><![CDATA[Does this route respond to the given method?]]></description>
+          <long-description><![CDATA[<p>If no method is provided, returns array of all methods to which this
+route will respond.</p>]]></long-description>
+          <tag line="194" name="param" description="" type="null|string" variable="$method">
+            <type by_reference="false">null</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="194" name="return" description="" type="array|bool">
+            <type by_reference="false">array</type>
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="203">
+          <name>$method</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Phlyty" line="224" package="Phlyty">
+        <name>name</name>
+        <full_name>name</full_name>
+        <docblock line="213">
+          <description><![CDATA[Retrieve and/or set the route name]]></description>
+          <long-description><![CDATA[<p>Sets the route name if a non-empty string is provided, and then returns
+the Route instance to allow a fluent interface.</p>
+
+<p>Otherwise, returns the route name.</p>]]></long-description>
+          <tag line="213" name="param" description="" type="null|string" variable="$name">
+            <type by_reference="false">null</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="213" name="return" description="" type="\Phlyty\Route|string">
+            <type by_reference="false">\Phlyty\Route</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="224">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <critical line="2" code="50008">No short description for file Route.php</critical>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="Phlyty" full_name="Phlyty">
+    <package name="Exception" full_name="Phlyty\Exception"/>
+    <package name="View" full_name="Phlyty\View"/>
+  </package>
+  <namespace name="Phlyty" full_name="Phlyty">
+    <namespace name="Exception" full_name="Phlyty\Exception"/>
+    <namespace name="View" full_name="Phlyty\View"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

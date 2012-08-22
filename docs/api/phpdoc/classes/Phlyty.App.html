@@ -1,0 +1,667 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phly_mustache » \Phlyty\App</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phly_mustache</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Phlyty.html"><i class="icon-th"></i> Phlyty</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Phlyty.html"><i class="icon-folder-open"></i> Phlyty</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">18</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#delete" title="delete :: Add a route for a DELETE request"><span class="description">Add a route for a DELETE request</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#event" title="event :: Create and return an application event instance"><span class="description">Create and return an application event instance</span><pre>event()</pre></a></li>
+<li class="method public "><a href="#events" title="events :: Retrieve event manager instance"><span class="description">Retrieve event manager instance</span><pre>events()</pre></a></li>
+<li class="method public "><a href="#flash" title="flash :: Create or retrieve a flash message"><span class="description">Create or retrieve a flash message</span><pre>flash()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Add a route for a GET request"><span class="description">Add a route for a GET request</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#getFlashMessenger" title="getFlashMessenger :: Get flash messenger instance"><span class="description">Get flash messenger instance</span><pre>getFlashMessenger()</pre></a></li>
+<li class="method public "><a href="#getLog" title="getLog :: Retrieve logger"><span class="description">Retrieve logger</span><pre>getLog()</pre></a></li>
+<li class="method public "><a href="#halt" title="halt :: Halt execution"><span class="description">Halt execution</span><pre>halt()</pre></a></li>
+<li class="method public "><a href="#map" title="map :: Map a route to a callback"><span class="description">Map a route to a callback</span><pre>map()</pre></a></li>
+<li class="method public "><a href="#options" title="options :: Add a route for a OPTIONS request"><span class="description">Add a route for a OPTIONS request</span><pre>options()</pre></a></li>
+<li class="method public "><a href="#params" title="params :: Return the route match parameters"><span class="description">Return the route match parameters</span><pre>params()</pre></a></li>
+<li class="method public "><a href="#pass" title="pass :: Pass execution on to next matching route"><span class="description">Pass execution on to next matching route</span><pre>pass()</pre></a></li>
+<li class="method public "><a href="#patch" title="patch :: Add a route for a PATCH request"><span class="description">Add a route for a PATCH request</span><pre>patch()</pre></a></li>
+<li class="method public "><a href="#post" title="post :: Add a route for a POST request"><span class="description">Add a route for a POST request</span><pre>post()</pre></a></li>
+<li class="method public "><a href="#put" title="put :: Add a route for a PUT request"><span class="description">Add a route for a PUT request</span><pre>put()</pre></a></li>
+<li class="method public "><a href="#redirect" title="redirect :: Redirect"><span class="description">Redirect</span><pre>redirect()</pre></a></li>
+<li class="method public "><a href="#render" title="render :: Render a template"><span class="description">Render a template</span><pre>render()</pre></a></li>
+<li class="method public "><a href="#request" title="request :: Retrieve the request environment"><span class="description">Retrieve the request environment</span><pre>request()</pre></a></li>
+<li class="method public "><a href="#response" title="response :: Retrieve the response environment"><span class="description">Retrieve the response environment</span><pre>response()</pre></a></li>
+<li class="method public "><a href="#run" title="run :: Run the application"><span class="description">Run the application</span><pre>run()</pre></a></li>
+<li class="method public "><a href="#setEventManager" title="setEventManager :: Set the event manager instance"><span class="description">Set the event manager instance</span><pre>setEventManager()</pre></a></li>
+<li class="method public "><a href="#setFlashMessenger" title="setFlashMessenger :: Set flash messenger instance"><span class="description">Set flash messenger instance</span><pre>setFlashMessenger()</pre></a></li>
+<li class="method public "><a href="#setLog" title="setLog :: Set logger"><span class="description">Set logger</span><pre>setLog()</pre></a></li>
+<li class="method public "><a href="#setRequest" title="setRequest :: Set the request object instance"><span class="description">Set the request object instance</span><pre>setRequest()</pre></a></li>
+<li class="method public "><a href="#setResponse" title="setResponse :: Set the response object instance"><span class="description">Set the response object instance</span><pre>setResponse()</pre></a></li>
+<li class="method public "><a href="#setView" title="setView :: Set view object"><span class="description">Set view object</span><pre>setView()</pre></a></li>
+<li class="method public "><a href="#setViewModelPrototype" title="setViewModelPrototype :: Set view model prototype object"><span class="description">Set view model prototype object</span><pre>setViewModelPrototype()</pre></a></li>
+<li class="method public "><a href="#stop" title="stop :: Stop execution"><span class="description">Stop execution</span><pre>stop()</pre></a></li>
+<li class="method public "><a href="#trigger" title="trigger :: Trigger a named event"><span class="description">Trigger a named event</span><pre>trigger()</pre></a></li>
+<li class="method public "><a href="#urlFor" title="urlFor :: Generates a URL based on a named route"><span class="description">Generates a URL based on a named route</span><pre>urlFor()</pre></a></li>
+<li class="method public "><a href="#view" title="view :: Retrieve view instance"><span class="description">Retrieve view instance</span><pre>view()</pre></a></li>
+<li class="method public "><a href="#viewModel" title="viewModel :: Retrieve a view model instance"><span class="description">Retrieve a view model instance</span><pre>viewModel()</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CPhlyty%5CApp" id="\Phlyty\App"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Phlyty.html">Phlyty</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Phlyty.App.html">App</a>
+</li>
+</ul>
+<div href="../classes/Phlyty.App.html" class="element class">
+<p class="short_description">Application container</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>Phlyty</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Phlyty.html">Phlyty</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Add a route for a DELETE request</h2>
+<pre>delete(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="event" id="event"></a><div class="element clickable method public event" data-toggle="collapse" data-target=".event .collapse">
+<h2>Create and return an application event instance</h2>
+<pre>event() : <a href="../classes/Phlyty.AppEvent.html">\Phlyty\AppEvent</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Sets the target to the App object instance, and, if a route has been
+matched, adds it to the instance.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.AppEvent.html">\Phlyty\AppEvent</a></code></div>
+</div></div>
+</div>
+<a name="events" id="events"></a><div class="element clickable method public events" data-toggle="collapse" data-target=".events .collapse">
+<h2>Retrieve event manager instance</h2>
+<pre>events() : \Zend\EventManager\EventManagerInterface</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>If not present, lazy-loads and registers one.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\EventManager\EventManagerInterface</code></div>
+</div></div>
+</div>
+<a name="flash" id="flash"></a><div class="element clickable method public flash" data-toggle="collapse" data-target=".flash .collapse">
+<h2>Create or retrieve a flash message</h2>
+<pre>flash(string $name, null | string $message) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a> | string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>nullstring</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code><code>string</code>
+</div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Add a route for a GET request</h2>
+<pre>get(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="getFlashMessenger" id="getFlashMessenger"></a><div class="element clickable method public getFlashMessenger" data-toggle="collapse" data-target=".getFlashMessenger .collapse">
+<h2>Get flash messenger instance</h2>
+<pre>getFlashMessenger() : \Zend\Mvc\Controller\Plugin\FlashMessenger</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Lazy instantiates one if none provided</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\Mvc\Controller\Plugin\FlashMessenger</code></div>
+</div></div>
+</div>
+<a name="getLog" id="getLog"></a><div class="element clickable method public getLog" data-toggle="collapse" data-target=".getLog .collapse">
+<h2>Retrieve logger</h2>
+<pre>getLog() : \Zend\Log\Logger</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Lazy instantiates one if none present.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\Log\Logger</code></div>
+</div></div>
+</div>
+<a name="halt" id="halt"></a><div class="element clickable method public halt" data-toggle="collapse" data-target=".halt .collapse">
+<h2>Halt execution</h2>
+<pre>halt(int $status, string $message) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Halts execution, and sets the response status code to $status, as well
+as sets the response body to the provided message (if any). Any previous
+content in the response body will be overwritten.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>int</code><p>HTTP response status</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>HTTP response body</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.HaltException.html">\Phlyty\Exception\HaltException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="map" id="map"></a><div class="element clickable method public map" data-toggle="collapse" data-target=".map .collapse">
+<h2>Map a route to a callback</h2>
+<pre>map(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.InvalidRouteException.html">\Phlyty\Exception\InvalidRouteException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="options" id="options"></a><div class="element clickable method public options" data-toggle="collapse" data-target=".options .collapse">
+<h2>Add a route for a OPTIONS request</h2>
+<pre>options(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="params" id="params"></a><div class="element clickable method public params" data-toggle="collapse" data-target=".params .collapse">
+<h2>Return the route match parameters</h2>
+<pre>params() : \Zend\Mvc\Router\RouteMatch</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>If none has been set yet, lazy instantiates an empty
+Router\RouteMatch container.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\Mvc\Router\RouteMatch</code></div>
+</div></div>
+</div>
+<a name="pass" id="pass"></a><div class="element clickable method public pass" data-toggle="collapse" data-target=".pass .collapse">
+<h2>Pass execution on to next matching route</h2>
+<pre>pass() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.PassException.html">\Phlyty\Exception\PassException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="patch" id="patch"></a><div class="element clickable method public patch" data-toggle="collapse" data-target=".patch .collapse">
+<h2>Add a route for a PATCH request</h2>
+<pre>patch(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="post" id="post"></a><div class="element clickable method public post" data-toggle="collapse" data-target=".post .collapse">
+<h2>Add a route for a POST request</h2>
+<pre>post(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="put" id="put"></a><div class="element clickable method public put" data-toggle="collapse" data-target=".put .collapse">
+<h2>Add a route for a PUT request</h2>
+<pre>put(string | \Zend\Mvc\Router\RouteInterface $route, \Phlyty\callable $controller) : <a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string\Zend\Mvc\Router\RouteInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>\Phlyty\callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.Route.html">\Phlyty\Route</a></code></div>
+</div></div>
+</div>
+<a name="redirect" id="redirect"></a><div class="element clickable method public redirect" data-toggle="collapse" data-target=".redirect .collapse">
+<h2>Redirect</h2>
+<pre>redirect(string | \Zend\Uri\UriInterface $uri, int $status) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Stop execution, and redirect to the provided location.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$uri</h4>
+<code>string\Zend\Uri\UriInterface</code>
+</div>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>int</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.HaltException.html">\Phlyty\Exception\HaltException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="render" id="render"></a><div class="element clickable method public render" data-toggle="collapse" data-target=".render .collapse">
+<h2>Render a template</h2>
+<pre>render(string $template, array | object $viewModel) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Renders a template, with any view model provided, and injects
+the content into the response object.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$template</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$viewModel</h4>
+<code>arrayobject</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="request" id="request"></a><div class="element clickable method public request" data-toggle="collapse" data-target=".request .collapse">
+<h2>Retrieve the request environment</h2>
+<pre>request() : \Zend\Http\PhpEnvironment\Request</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\Http\PhpEnvironment\Request</code></div>
+</div></div>
+</div>
+<a name="response" id="response"></a><div class="element clickable method public response" data-toggle="collapse" data-target=".response .collapse">
+<h2>Retrieve the response environment</h2>
+<pre>response() : \Zend\Http\PhpEnvironment\Response</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\Http\PhpEnvironment\Response</code></div>
+</div></div>
+</div>
+<a name="run" id="run"></a><div class="element clickable method public run" data-toggle="collapse" data-target=".run .collapse">
+<h2>Run the application</h2>
+<pre>run() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>triggers</th>
+<td>begin</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>route</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>halt</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>404</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>501</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>500</td>
+</tr>
+<tr>
+<th>triggers</th>
+<td>finish</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="setEventManager" id="setEventManager"></a><div class="element clickable method public setEventManager" data-toggle="collapse" data-target=".setEventManager .collapse">
+<h2>Set the event manager instance</h2>
+<pre>setEventManager(\Zend\EventManager\EventManagerInterface $events) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$events</h4>
+<code>\Zend\EventManager\EventManagerInterface</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setFlashMessenger" id="setFlashMessenger"></a><div class="element clickable method public setFlashMessenger" data-toggle="collapse" data-target=".setFlashMessenger .collapse">
+<h2>Set flash messenger instance</h2>
+<pre>setFlashMessenger(\Zend\Mvc\Controller\Plugin\FlashMessenger $flashMessenger) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$flashMessenger</h4>
+<code>\Zend\Mvc\Controller\Plugin\FlashMessenger</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setLog" id="setLog"></a><div class="element clickable method public setLog" data-toggle="collapse" data-target=".setLog .collapse">
+<h2>Set logger</h2>
+<pre>setLog(\Zend\Log\Logger $log) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$log</h4>
+<code>\Zend\Log\Logger</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setRequest" id="setRequest"></a><div class="element clickable method public setRequest" data-toggle="collapse" data-target=".setRequest .collapse">
+<h2>Set the request object instance</h2>
+<pre>setRequest(\Zend\Http\PhpEnvironment\Request $request) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$request</h4>
+<code>\Zend\Http\PhpEnvironment\Request</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setResponse" id="setResponse"></a><div class="element clickable method public setResponse" data-toggle="collapse" data-target=".setResponse .collapse">
+<h2>Set the response object instance</h2>
+<pre>setResponse(\Zend\Http\PhpEnvironment\Response $response) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$response</h4>
+<code>\Zend\Http\PhpEnvironment\Response</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setView" id="setView"></a><div class="element clickable method public setView" data-toggle="collapse" data-target=".setView .collapse">
+<h2>Set view object</h2>
+<pre>setView(\Phlyty\View\ViewInterface $view) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$view</h4>
+<code><a href="../classes/Phlyty.View.ViewInterface.html">\Phlyty\View\ViewInterface</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="setViewModelPrototype" id="setViewModelPrototype"></a><div class="element clickable method public setViewModelPrototype" data-toggle="collapse" data-target=".setViewModelPrototype .collapse">
+<h2>Set view model prototype object</h2>
+<pre>setViewModelPrototype(object $model) : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$model</h4>
+<code>object</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.InvalidViewModelException.html">\Phlyty\Exception\InvalidViewModelException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
+</div></div>
+</div>
+<a name="stop" id="stop"></a><div class="element clickable method public stop" data-toggle="collapse" data-target=".stop .collapse">
+<h2>Stop execution</h2>
+<pre>stop() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Stops execution immediately, returning the response as it currently
+stands.</p></p>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.HaltException.html">\Phlyty\Exception\HaltException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="trigger" id="trigger"></a><div class="element clickable method public trigger" data-toggle="collapse" data-target=".trigger .collapse">
+<h2>Trigger a named event</h2>
+<pre>trigger(string $name, array $params) : \Zend\EventManager\ResponseCollection</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Allows optionally passing more params if desired.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend\EventManager\ResponseCollection</code></div>
+</div></div>
+</div>
+<a name="urlFor" id="urlFor"></a><div class="element clickable method public urlFor" data-toggle="collapse" data-target=".urlFor .collapse">
+<h2>Generates a URL based on a named route</h2>
+<pre>urlFor(string $route, array $params, array $options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string</code><p>Named Route instance</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>Parameters to use in url generation, if any</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>Router\RouteInterface-specific options to use in url generation, if any</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Phlyty.Exception.InvalidRouteException.html">\Phlyty\Exception\InvalidRouteException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="view" id="view"></a><div class="element clickable method public view" data-toggle="collapse" data-target=".view .collapse">
+<h2>Retrieve view instance</h2>
+<pre>view() : <a href="../classes/Phlyty.View.ViewInterface.html">\Phlyty\View\ViewInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>If none present, lazy-loads View\MustacheView instance.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Phlyty.View.ViewInterface.html">\Phlyty\View\ViewInterface</a></code></div>
+</div></div>
+</div>
+<a name="viewModel" id="viewModel"></a><div class="element clickable method public viewModel" data-toggle="collapse" data-target=".viewModel .collapse">
+<h2>Retrieve a view model instance</h2>
+<pre>viewModel() : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Always returns a new view model instance, cloned from the instance in
+$viewModelPrototype. If no prototype exists, creates one from
+View\MustacheViewModel.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-08-21T22:55:28-05:00.<br></footer></div>
+</div>
+</body>
+</html>
