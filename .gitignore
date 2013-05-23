@@ -3,5 +3,5 @@ vendor/
 .vimproject
 *.log
 tests/log/
-/composer.phar
-/tests/phpunit.xml
+composer.phar
+tests/phpunit.xml

@@ -20,13 +20,13 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "zendframework/zend-escaper": "2.2.*",
-        "zendframework/zend-eventmanager": "2.2.*",
-        "zendframework/zend-http": "2.2.*",
-        "zendframework/zend-i18n": "2.2.*",
-        "zendframework/zend-log": "2.2.*",
-        "zendframework/zend-mvc": "2.2.*",
-        "zendframework/zend-session": "2.2.*",
+        "zendframework/zend-escaper": "2.*",
+        "zendframework/zend-eventmanager": "2.*",
+        "zendframework/zend-http": "2.*",
+        "zendframework/zend-i18n": "2.*",
+        "zendframework/zend-log": "2.*",
+        "zendframework/zend-mvc": "2.*",
+        "zendframework/zend-session": "2.*",
         "phly/mustache": ">=1.2.0"
     },
     "autoload": {
