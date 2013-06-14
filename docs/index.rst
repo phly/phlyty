@@ -7,7 +7,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   
+
    overview
    modules/routes
    modules/controllers
@@ -18,12 +18,12 @@ Contents:
 Api docs
 --------
 
-`API docs are available. <_static/phpdoc/index.html>`_
+- `API docs are available. <_static/phpdoc/index.html>`_
 
 Getting help
 ------------
 
-- `Issue Tracker <https://github.com/weierophinney/phlyty>`
+- `Issue Tracker <https://github.com/weierophinney/phlyty>`_
 
 
 Indices and tables
