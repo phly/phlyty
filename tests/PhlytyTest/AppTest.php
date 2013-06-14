@@ -539,4 +539,20 @@ class AppTest extends TestCase
         $response = $this->app->response();
         $this->assertEquals('Foo bar!', $response->sentContent);
     }
+
+    public function testUrlForHelperWithBaseUrl()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent($app->urlFor('foo'));
+        })->name('foo');
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+            ->setBaseUrl('/bar/baz')
+            ->setUri('/bar/baz/foo');
+
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('/bar/baz/foo', $response->sentContent);
+    }
 }
