@@ -530,11 +530,11 @@ class AppTest extends TestCase
             $app->response()->setContent('Foo bar!');
         });
 
-        $this->app->request()->setBaseUrl('/bar/baz');
-
         $request = $this->app->request();
         $request->setMethod('GET')
+            ->setBaseUrl('/bar/baz')
             ->setUri('/bar/baz/foo');
+
         $this->app->run();
         $response = $this->app->response();
         $this->assertEquals('Foo bar!', $response->sentContent);
