@@ -523,4 +523,20 @@ class AppTest extends TestCase
         $this->assertNotInstanceOf('Phlyty\View\MustacheViewModel', $test);
         $this->assertNotSame($model, $test);
     }
+
+    public function testRouteMatchWithBaseUrl()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent('Foo bar!');
+        });
+
+        $this->app->request()->setBaseUrl('/bar/baz');
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+            ->setUri('/bar/baz/foo');
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('Foo bar!', $response->sentContent);
+    }
 }

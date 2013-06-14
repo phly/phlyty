@@ -742,12 +742,16 @@ class App
 
             $request = $e->getParam('request');
             $routes  = $this->routesByMethod[$method];
+
+            $baseUrl = $request->getBaseUrl();
+            $baseUrlLength = strlen($baseUrl) ?: null;
+
             foreach ($routes as $index => $route) {
                 if ($index <= $this->routeIndex) {
                     // Skip over routes we've already looked at
                     continue;
                 }
-                $result = $route->route()->match($request);
+                $result = $route->route()->match($request, $baseUrlLength);
                 if ($result) {
                     $this->routeIndex = $index;
                     $this->params     = $result;
