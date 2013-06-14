@@ -597,7 +597,7 @@ class App
             ));
         }
 
-        return $this->request()->getBaseUrl().$route->route()->assemble($params, $options);
+        return $this->request()->getBaseUrl() . $route->route()->assemble($params, $options);
     }
 
     /**
