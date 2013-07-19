@@ -761,6 +761,7 @@ class App
                 ) {
                     $this->routeIndex = $index;
                     $this->params     = $result;
+                    $e->setRoute($route);
                     return $route;
                 }
             }
