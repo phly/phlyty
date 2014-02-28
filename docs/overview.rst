@@ -34,7 +34,7 @@ create the following ``composer.json`` file in your project:
         ],
         "minimum-stability": "dev",
         "require": {
-            "phly/phlyty": "dev-master",
+            "phly/phlyty": "dev-master"
         }
     }
 
