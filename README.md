@@ -12,7 +12,7 @@ Basically, ZF2 components are used to provide the boring parts:
 - Events
 - Logging
 
-I used [phly_mustache](http://weierophinney.github.com/phly_mustache) as the
+I used [phly_mustache](https://github.com/phly/phly_mustache) as the
 templating engine.
 
 Like a variety of other microframeworks, the core application object simply
