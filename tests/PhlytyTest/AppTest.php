@@ -523,4 +523,57 @@ class AppTest extends TestCase
         $this->assertNotInstanceOf('Phlyty\View\MustacheViewModel', $test);
         $this->assertNotSame($model, $test);
     }
+
+    public function testRouteMatchWithBaseUrl()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent('Foo bar!');
+        });
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+            ->setBaseUrl('/bar/baz')
+            ->setUri('/bar/baz/foo');
+
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('Foo bar!', $response->sentContent);
+    }
+
+    public function testUrlForHelperWithBaseUrl()
+    {
+        $foo = $this->app->get('/foo', function ($app) {
+            $app->response()->setContent($app->urlFor('foo'));
+        })->name('foo');
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+            ->setBaseUrl('/bar/baz')
+            ->setUri('/bar/baz/foo');
+
+        $this->app->run();
+        $response = $this->app->response();
+        $this->assertEquals('/bar/baz/foo', $response->sentContent);
+    }
+
+    public function testPartRouteShouldNotMatch()
+    {
+        $foo = $this->app->get('/', function ($app) {
+            $app->response()->setContent('found');
+        });
+
+        $this->app->events()->attach('404', function ($event) {
+            $event->getTarget()->response()->setContent('not found');
+        });
+
+        $request = $this->app->request();
+        $request->setMethod('GET')
+            ->setBaseUrl('/test/bar')
+            ->setUri('/test/bar/baz');
+
+        $this->app->run();
+
+        $response = $this->app->response();
+        $this->assertEquals('not found', $response->sentContent);
+    }
 }
