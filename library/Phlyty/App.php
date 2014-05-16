@@ -15,6 +15,7 @@ use Zend\Http\PhpEnvironment\Response;
 use Zend\Log\Logger;
 use Zend\Mvc\Router;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
+use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Uri\UriInterface;
 
 /**
@@ -597,7 +598,7 @@ class App
             ));
         }
 
-        return $route->route()->assemble($params, $options);
+        return $this->request()->getBaseUrl() . $route->route()->assemble($params, $options);
     }
 
     /**
@@ -742,15 +743,25 @@ class App
 
             $request = $e->getParam('request');
             $routes  = $this->routesByMethod[$method];
+
+            $baseUrl = $request->getBaseUrl();
+            $baseUrlLength = strlen($baseUrl) ?: null;
+
+            $requestUrlLength = strlen($request->getUri()->getPath());
+            $pathLength = ($baseUrlLength !== null) ? $requestUrlLength - $baseUrlLength : null;
+
             foreach ($routes as $index => $route) {
                 if ($index <= $this->routeIndex) {
                     // Skip over routes we've already looked at
                     continue;
                 }
-                $result = $route->route()->match($request);
-                if ($result) {
+                if (
+                    ($result = $route->route()->match($request, $baseUrlLength)) instanceof RouteMatch
+                    && ($pathLength === null || $result->getLength() === $pathLength)
+                ) {
                     $this->routeIndex = $index;
                     $this->params     = $result;
+                    $e->setRoute($route);
                     return $route;
                 }
             }

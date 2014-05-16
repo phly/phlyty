@@ -18,7 +18,7 @@ Workflow Helpers
 Workflow helpers shape the flow of the application. They allow you to return
 from execution early, either because the response is ready, or because we know
 an error condition has occurred; redirect to another URI; pass on execution to
-another route and controller; or work with events. 
+another route and controller; or work with events.
 
 ``halt($status, $message='')``
     Halts execution immediately, setting the response status to ``$status``,
@@ -66,7 +66,7 @@ another route and controller; or work with events.
             // This matches the previous route, which means when pass() is
             // called by the previous controller, this route will be matched
             // and this controller invoked.
-            // 
+            //
             // Display home page
         });
 
@@ -96,7 +96,7 @@ another route and controller; or work with events.
             if (!in_array($route->getName(), ['profile', 'comment', 'post']) {
                 return;
             }
-            
+
             // check if we have an authenticated user, and throw an exception
             // otherwise
             // ...
@@ -125,7 +125,7 @@ another route and controller; or work with events.
     .. code-block:: php
 
         $logger = $app->getLog()
-        $logger->addWriter('stream', [ 
+        $logger->addWriter('stream', [
             'stream'        => 'php://stderr',
             'log_separator' => "\n",
         ]);
@@ -181,8 +181,7 @@ the request and response objects help you with this.
         $app->request()->isOptions();
         $app->request()->isPatch();
 
-        // Set the base url
-        // This is a nice way to run your app in a subdirectory.
+        // The base url should be auto-detected, but you can also set it explicitly
         $app->request()->setBaseUrl('/~matthew/sites/foo');
 
 ``response()``
@@ -284,7 +283,7 @@ updated).
 ``viewModel()``
     Retrieves a *clone* of the currently registered view model object. By
     default, if none has been registered, an instance of
-    ``Phlyty\View\MustacheView`` is provided. 
+    ``Phlyty\View\MustacheView`` is provided.
 
     .. code-block:: php
 
@@ -332,5 +331,3 @@ updated).
         });
 
 For more about views, :ref:`see the section on Views<phlyty.modules.views>`.
-
-    
