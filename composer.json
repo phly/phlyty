@@ -19,15 +19,15 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "zendframework/zend-escaper": "2.*",
-        "zendframework/zend-eventmanager": "2.*",
-        "zendframework/zend-http": "2.*",
-        "zendframework/zend-i18n": "2.*",
-        "zendframework/zend-log": "2.*",
-        "zendframework/zend-mvc": "2.*",
-        "zendframework/zend-session": "2.*",
-        "phly/mustache": ">=1.2.0"
+        "php": "~5.4",
+        "zendframework/zend-escaper": "~2.0",
+        "zendframework/zend-eventmanager": "~2.0",
+        "zendframework/zend-http": "~2.0",
+        "zendframework/zend-i18n": "~2.0",
+        "zendframework/zend-log": "~2.0",
+        "zendframework/zend-mvc": "~2.0",
+        "zendframework/zend-session": "~2.0",
+        "phly/mustache": "~1.2"
     },
     "autoload": {
         "psr-0": {
