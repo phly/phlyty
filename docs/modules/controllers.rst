@@ -64,7 +64,7 @@ variable.
     $lambda = function ($app) use ($config) {
         // You can access $config now.
         // Do work here.
-    });
+    };
     $app->get('/', $lambda);
 
 Named Functions
