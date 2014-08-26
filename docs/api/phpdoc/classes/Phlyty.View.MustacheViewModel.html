@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
@@ -33,7 +33,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">18</span></a></li>
+                <span class="label label-info">17</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -51,36 +51,56 @@
                         </div></noscript>
 <div class="row">
 <div class="span4">
-<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
 </div>
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
-<i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#__app" title="__app :: Retrieve application instance"><span class="description">Retrieve application instance</span><pre>__app()</pre></a></li>
-<li class="method public "><a href="#__construct" title="__construct :: Constructor"><span class="description">Constructor</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#__escaper" title="__escaper :: Retrieve escaper instance"><span class="description">Retrieve escaper instance</span><pre>__escaper()</pre></a></li>
-<li class="method public "><a href="#bindHelper" title="bindHelper :: Bind a helper within the view model object's context"><span class="description">Bind a helper within the view model object's context</span><pre>bindHelper()</pre></a></li>
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___app" title="__app() :: Retrieve application instance"><span class="description">Retrieve application instance</span><pre>__app()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct() :: Constructor"><span class="description">Constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___escaper" title="__escaper() :: Retrieve escaper instance"><span class="description">Retrieve escaper instance</span><pre>__escaper()</pre></a></li>
+<li class="method public "><a href="#method_bindHelper" title="bindHelper() :: Bind a helper within the view model object's context"><span class="description">Bind a helper within the view model object's context</span><pre>bindHelper()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property_app" title="$app() :: "><span class="description"></span><pre>$app</pre></a></li>
+<li class="property protected "><a href="#property_escaper" title="$escaper() :: "><span class="description"></span><pre>$escaper</pre></a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CPhlyty%5CView%5CMustacheViewModel" id="\Phlyty\View\MustacheViewModel"></a><ul class="breadcrumb">
+<a id="\Phlyty\View\MustacheViewModel"></a><ul class="breadcrumb">
 <li>
-<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/Phlyty.html">Phlyty</a></li>
-<span class="divider">\</span><li><a href="../namespaces/Phlyty.View.html">View</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Phlyty.View.html">View</a>
+</li>
 <li class="active">
 <span class="divider">\</span><a href="../classes/Phlyty.View.MustacheViewModel.html">MustacheViewModel</a>
 </li>
 </ul>
-<div href="../classes/Phlyty.View.MustacheViewModel.html" class="element class">
+<div class="element class">
 <p class="short_description">Base view model for use with Mustache.</p>
 <div class="details">
-<p class="long_description"><p>The main purpose of this class is to provide the view model with the App
+<div class="long_description">The main purpose of this class is to provide the view model with the App
 instance, thus giving it access to the various helper methods available in
 that class. Additionally, it provides an instance of Escaper, allowing you
-to do context-specific escaping within helpers you define in the view model.</p></p>
+to do context-specific escaping within helpers you define in the view model.</div>
 <table class="table table-bordered">
 <tr>
 <th>category</th>
@@ -96,26 +116,26 @@ to do context-specific escaping within helpers you define in the view model.</p>
 </tr>
 </table>
 <h3>
-<i class="icon-custom icon-method"></i> Methods</h3>
-<a name="__app" id="__app"></a><div class="element clickable method public __app" data-toggle="collapse" data-target=".__app .collapse">
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___app"></a><div class="element clickable method public method___app" data-toggle="collapse" data-target=".method___app .collapse" title="public">
 <h2>Retrieve application instance</h2>
 <pre>__app() : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Phlyty.App.html">\Phlyty\App</a></code></div>
 </div></div>
 </div>
-<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Constructor</h2>
-<pre>__construct(\Phlyty\App $app, \Zend\Escaper\Escaper $escaper) </pre>
+<pre>__construct(\Phlyty\App $app, null|\Zend\Escaper\Escaper $escaper<code> = null</code>) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Receive and set the App instance as a protected property.
+<div class="long_description">Receive and set the App instance as a protected property.
 If an Escaper instance is passed, it will be assigned;
 otherwise, an Escaper instance will be instantiated and
-assigned.</p></p>
+assigned.</div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$app</h4>
@@ -123,28 +143,28 @@ assigned.</p></p>
 </div>
 <div class="subelement argument">
 <h4>$escaper</h4>
-<code>null\Zend\Escaper\Escaper</code>
+<code>null</code><code><a href="Escaper.html">\Zend\Escaper\Escaper</a></code>
 </div>
 </div></div>
 </div>
-<a name="__escaper" id="__escaper"></a><div class="element clickable method public __escaper" data-toggle="collapse" data-target=".__escaper .collapse">
+<a id="method___escaper"></a><div class="element clickable method public method___escaper" data-toggle="collapse" data-target=".method___escaper .collapse" title="public">
 <h2>Retrieve escaper instance</h2>
-<pre>__escaper() : \Zend\Escaper\Escaper</pre>
+<pre>__escaper() : <a href="Escaper.html">\Zend\Escaper\Escaper</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<div class="long_description"></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\Zend\Escaper\Escaper</code></div>
+<div class="subelement response"><code><a href="Escaper.html">\Zend\Escaper\Escaper</a></code></div>
 </div></div>
 </div>
-<a name="bindHelper" id="bindHelper"></a><div class="element clickable method public bindHelper" data-toggle="collapse" data-target=".bindHelper .collapse">
+<a id="method_bindHelper"></a><div class="element clickable method public method_bindHelper" data-toggle="collapse" data-target=".method_bindHelper .collapse" title="public">
 <h2>Bind a helper within the view model object's context</h2>
 <pre>bindHelper(string $name, callable $helper) : <a href="../classes/Phlyty.View.MustacheViewModel.html">\Phlyty\View\MustacheViewModel</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Allows using '$this' within the helper in order to access public
+<div class="long_description">Allows using '$this' within the helper in order to access public
 properties and methods. Binds the helper to the public property
-given by $name.</p></p>
+given by $name.</div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$name</h4>
@@ -152,11 +172,33 @@ given by $name.</p></p>
 </div>
 <div class="subelement argument">
 <h4>$helper</h4>
-<code>\Phlyty\View\callable</code>
+<code>callable</code>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Phlyty.View.MustacheViewModel.html">\Phlyty\View\MustacheViewModel</a></code></div>
 </div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_app"> </a><div class="element clickable property protected property_app" data-toggle="collapse" data-target=".property_app .collapse" title="protected">
+<h2>$app</h2>
+<pre>$app : <a href="../classes/Phlyty.App.html">\Phlyty\App</a></pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_escaper"> </a><div class="element clickable property protected property_escaper" data-toggle="collapse" data-target=".property_escaper .collapse" title="protected">
+<h2>$escaper</h2>
+<pre>$escaper : <a href="Escaper.html">\Zend\Escaper\Escaper</a></pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 </div>
 </div>
@@ -164,8 +206,9 @@ given by $name.</p></p>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-08-21T23:01:53-05:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2014-08-26T08:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>

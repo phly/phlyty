@@ -1,7 +1,8 @@
-vendor/
-*.swp
-.vimproject
-*.log
-tests/log/
 composer.phar
+docs/api/phpdoc/phpdoc-cache*
+*.log
+*.swp
+tests/log/
 tests/phpunit.xml
+vendor/
+.vimproject

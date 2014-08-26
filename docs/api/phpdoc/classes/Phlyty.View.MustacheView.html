@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
@@ -33,7 +33,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">18</span></a></li>
+                <span class="label label-info">17</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -51,30 +51,36 @@
                         </div></noscript>
 <div class="row">
 <div class="span4">
-<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
 </div>
-<ul class="side-nav nav nav-list">
-<li class="nav-header">
-<i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#render" title="render :: Render a template"><span class="description">Render a template</span><pre>render()</pre></a></li>
-</ul>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul><li class="method public "><a href="#method_render" title="render() :: Render a template"><span class="description">Render a template</span><pre>render()</pre></a></li></ul>
+</li></ul>
 </div>
 <div class="span8">
-<a name="%5CPhlyty%5CView%5CMustacheView" id="\Phlyty\View\MustacheView"></a><ul class="breadcrumb">
+<a id="\Phlyty\View\MustacheView"></a><ul class="breadcrumb">
 <li>
-<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/Phlyty.html">Phlyty</a></li>
-<span class="divider">\</span><li><a href="../namespaces/Phlyty.View.html">View</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Phlyty.View.html">View</a>
+</li>
 <li class="active">
 <span class="divider">\</span><a href="../classes/Phlyty.View.MustacheView.html">MustacheView</a>
 </li>
 </ul>
-<div href="../classes/Phlyty.View.MustacheView.html" class="element class">
+<div class="element class">
 <p class="short_description">Mustache view -- proxies to phly_mustache</p>
 <div class="details">
-<p class="long_description"></p>
+<div class="long_description"></div>
 <table class="table table-bordered">
 <tr>
 <th>category</th>
@@ -90,14 +96,14 @@
 </tr>
 </table>
 <h3>
-<i class="icon-custom icon-method"></i> Methods</h3>
-<a name="render" id="render"></a><div class="element clickable method public render" data-toggle="collapse" data-target=".render .collapse">
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_render"></a><div class="element clickable method public method_render" data-toggle="collapse" data-target=".method_render .collapse" title="public">
 <h2>Render a template</h2>
-<pre>render(string $template, mixed $viewModel, mixed $partials) : string</pre>
+<pre>render(string $template, mixed $viewModel<code> = array()</code>, mixed $partials<code> = null</code>) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Proxies to parent object, but provides defaults for $viewModel and
-$partials.</p></p>
+<div class="long_description">Proxies to parent object, but provides defaults for $viewModel and
+$partials.</div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$template</h4>
@@ -107,8 +113,7 @@ $partials.</p></p>
 <code>mixed</code><p>An array or object with items to inject in the template</p></div>
 <div class="subelement argument">
 <h4>$partials</h4>
-<code>mixed</code><p>A list of partial names/template pairs for rendering as partials</p>
-</div>
+<code>mixed</code><p>A list of partial names/template pairs for rendering as partials</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
 </div></div>
@@ -119,8 +124,9 @@ $partials.</p></p>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-08-21T23:01:53-05:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2014-08-26T08:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>
