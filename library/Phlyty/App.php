@@ -602,11 +602,11 @@ class App
     }
 
     /**
-     * Create or retrieve a flash message
+     * Create a flash message or retrieve the flash messages for a specific namespace
      *
      * @param  string $name
      * @param  null|string $message
-     * @return App|string
+     * @return App|array
      */
     public function flash($name, $message = null)
     {
